@@ -229,48 +229,59 @@ html.js .reveal.is-in { opacity: 1; transform: none; transition: opacity 0.7s ea
 }
 .social-dot:hover { background: rgba(255, 255, 255, 0.3); transform: translateY(-2px); }
 
-/* ---- Steps "staircase" (editorial, breedlove style) ---- */
-.steps-flow {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(48px, 7vw, 110px);
+/* ---- Steps "staircase" (editorial, breedlove style) ----
+   The image is the only flow element, so every consecutive image overlaps the
+   previous by a constant ~20% of its height. The text is absolutely positioned
+   (under the left images, above the right ones) and fills the diagonal gaps. */
+.steps-flow { display: flex; flex-direction: column; }
+.step {
+  position: relative;
+  width: 47%;
 }
-.step { width: min(560px, 92%); }
-.step:nth-child(even) { margin-left: auto; }           /* push right -> staircase */
-.step-head {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 20px;
-  align-items: start;
-  border-top: 1px solid var(--line-strong);
-  padding-top: 18px;
-}
-.step-index {
-  font-family: var(--font-body);
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  font-size: 12px;
-  color: var(--pink);
-  white-space: nowrap;
-  padding-top: 6px;
-}
-.step-title { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.4rem, 3vw, 2rem); line-height: 1.12; }
-.step-desc { font-family: var(--font-body); color: var(--ink-soft); margin-top: 10px; max-width: 42ch; }
-.step-meta { margin-top: 12px; }
+.step:nth-child(odd) { align-self: flex-start; }  /* left */
+.step:nth-child(even) { align-self: flex-end; }   /* right */
+.step:not(:first-child) { margin-top: -6.5%; }    /* ≈ 20% image-height overlap */
+
 .step-img {
+  display: block;
   width: 100%;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 16 / 11;
   object-fit: cover;
   border-radius: var(--radius-card);
-  margin-top: 22px;
   box-shadow: var(--shadow);
 }
-/* even steps: image on top, text below (mirrors the diagonal) */
-.step:nth-child(even) { display: flex; flex-direction: column; }
-.step:nth-child(even) .step-img { order: 1; margin-top: 0; margin-bottom: 22px; }
-.step:nth-child(even) .step-head { order: 2; }
+
+.step-head {
+  position: absolute;
+  left: 0; right: 0;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 18px;
+  align-items: start;
+  border-top: 1px solid var(--line-strong);
+  padding-top: 16px;
+}
+.step:nth-child(odd) .step-head { top: 100%; margin-top: 22px; }     /* text under image */
+.step:nth-child(even) .step-head { bottom: 100%; margin-bottom: 22px; } /* text above image */
+
+.step-index {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  line-height: 1;
+  color: var(--pink);
+  white-space: nowrap;
+}
+.step-title { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.35rem, 2.8vw, 1.9rem); line-height: 1.12; }
+.step-desc { font-family: var(--font-body); color: var(--ink-soft); margin-top: 10px; max-width: 42ch; }
+.step-meta { margin-top: 12px; }
+
 @media (max-width: 768px) {
-  .step { width: 100%; margin-left: 0 !important; }
+  .steps-flow { gap: 44px; }
+  .step { position: static; width: 100%; align-self: auto; margin-top: 0; }
+  .step-head { position: static; margin: 18px 0 0 !important; }
+  .step:nth-child(even) { display: flex; flex-direction: column; }
+  .step:nth-child(even) .step-head { order: -1; margin: 0 0 18px !important; }
 }
 
 /* ---- Reviews (single big testimonial slider, no portrait) ---- */
@@ -345,15 +356,16 @@ html.js .reveal.is-in { opacity: 1; transform: none; transition: opacity 0.7s ea
   opacity: 0;
   z-index: 1;
 }
+/* starts portrait ("mobile"), JS scrubs it to a padded widescreen */
 .expand-media {
   position: relative;
   z-index: 2;
-  width: clamp(280px, 34vw, 620px);
-  aspect-ratio: 16 / 9;
-  border-radius: 24px;
+  width: clamp(160px, 17vw, 250px);
+  aspect-ratio: 9 / 16;
+  border-radius: 22px;
   overflow: hidden;
   box-shadow: 0 40px 90px -30px rgba(0, 0, 0, 0.5);
-  will-change: width, border-radius;
+  will-change: width, height, border-radius;
 }
 .expand-media video { width: 100%; height: 100%; object-fit: cover; display: block; }
 .expand-media-label {
@@ -365,9 +377,31 @@ html.js .reveal.is-in { opacity: 1; transform: none; transition: opacity 0.7s ea
   text-shadow: 0 2px 12px rgba(0,0,0,0.6);
   z-index: 2;
 }
+/* two-line pink heading whose lines slide apart on scroll */
 .expand-heading { z-index: 3; }
+.expand-title { display: flex; flex-direction: column; align-items: center; line-height: 1.0; }
+.expand-line {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2.1rem, 6.5vw, 5rem);
+  color: var(--pink);
+  opacity: 0.92;
+  white-space: nowrap;
+  will-change: transform;
+  text-shadow: 0 2px 22px rgba(255, 255, 255, 0.35);
+}
 @media (max-width: 768px) {
-  .expand-media { width: 78vw; }
+  .expand-media { width: clamp(150px, 42vw, 230px); }
+}
+
+/* ---- 3D tilt on image cards (desktop / mouse only) ---- */
+.tilt {
+  will-change: transform;
+  transition: transform 0.15s ease-out;
+  transform-origin: center;
+}
+@media (hover: none), (pointer: coarse) {
+  .tilt { transform: none !important; }
 }
 
 /* Gradient CTA card (like reference) */

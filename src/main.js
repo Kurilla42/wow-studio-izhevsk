@@ -39,19 +39,36 @@ document.querySelectorAll('.reveal').forEach((el) => {
 })
 if (prefersReduced) document.querySelectorAll('.reveal').forEach((el) => el.classList.add('is-in'))
 
-/* ============ Expanding video (surroundings fade to block bg) ============ */
+/* ============ Expanding video: portrait -> padded widescreen ============ */
 const expandWrap = document.getElementById('expand')
 if (expandWrap && !prefersReduced) {
   const media = expandWrap.querySelector('.expand-media')
   const fade = expandWrap.querySelector('.expand-fade')
-  const heading = expandWrap.querySelector('.expand-heading')
+  const line1 = expandWrap.querySelector('.expand-line-1')
+  const line2 = expandWrap.querySelector('.expand-line-2')
+
+  const sizes = () => {
+    const vw = window.innerWidth
+    const vh = window.innerHeight
+    // start: portrait ("mobile") — narrow and tall
+    let startW = Math.min(vw * 0.5, 235)
+    let startH = (startW * 16) / 9
+    if (startH > vh * 0.62) { startH = vh * 0.62; startW = (startH * 9) / 16 }
+    // end: padded widescreen — leaves margins around the block (not full bleed)
+    const endW = Math.min(vw * 0.86, 1180)
+    const endH = (endW * 9) / 16
+    return { startW, startH, endW, endH }
+  }
 
   const tl = gsap.timeline({
-    scrollTrigger: { trigger: expandWrap, start: 'top top', end: 'bottom bottom', scrub: 1 },
+    scrollTrigger: { trigger: expandWrap, start: 'top top', end: 'bottom bottom', scrub: 1, invalidateOnRefresh: true },
   })
-  tl.to(media, { width: '100vw', borderRadius: 0, ease: 'none' }, 0)
-    .to(fade, { opacity: 1, ease: 'none' }, 0)          // backdrop image -> block background colour
-    .to(heading, { opacity: 0, y: -30, ease: 'none' }, 0.05)
+  tl.fromTo(media,
+      { width: () => sizes().startW, height: () => sizes().startH },
+      { width: () => sizes().endW, height: () => sizes().endH, borderRadius: 16, ease: 'none' }, 0)
+    .to(fade, { opacity: 1, ease: 'none' }, 0)                                 // backdrop -> block background colour
+    .to(line1, { x: () => -window.innerWidth * 0.62, ease: 'none' }, 0)        // two lines slide apart
+    .to(line2, { x: () => window.innerWidth * 0.62, ease: 'none' }, 0)
 }
 
 /* ============ Reviews slider (single big testimonial) ============ */
@@ -90,6 +107,27 @@ sections.forEach((sec, i) => {
     },
   })
 })
+
+/* ============ 3D tilt on image cards (mouse / desktop only) ============ */
+const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches
+if (canHover) {
+  const MAX = 13 // max tilt angle in degrees
+  document.querySelectorAll('.tilt').forEach((el) => {
+    let rect = null
+    el.addEventListener('mouseenter', () => { rect = el.getBoundingClientRect() })
+    el.addEventListener('mousemove', (e) => {
+      if (!rect) rect = el.getBoundingClientRect()
+      const nx = ((e.clientX - rect.left) / rect.width) * 2 - 1   // -1 .. 1
+      const ny = ((e.clientY - rect.top) / rect.height) * 2 - 1   // -1 .. 1
+      // tilt away from the cursor ("pressure"): rotateX = ny, rotateY = -nx
+      el.style.transform = `perspective(800px) rotateX(${(ny * MAX).toFixed(2)}deg) rotateY(${(-nx * MAX).toFixed(2)}deg) scale(1.02)`
+    })
+    el.addEventListener('mouseleave', () => {
+      rect = null
+      el.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) scale(1)'
+    })
+  })
+}
 
 /* refresh after fonts load to keep scroll math correct */
 if (document.fonts?.ready) document.fonts.ready.then(() => ScrollTrigger.refresh())

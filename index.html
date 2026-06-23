@@ -18,8 +18,7 @@
   <header class="site-header fixed top-0 inset-x-0 z-50">
     <nav class="container-wow flex items-center justify-between py-3.5">
       <a href="#top" class="flex items-center gap-3 group">
-        <img src="/img/logo.jpg" alt="WOW" class="w-10 h-10 rounded-full object-cover shadow-sm group-hover:scale-105 transition-transform" />
-        <span class="font-display font-bold text-xl tracking-tight text-pink">WOW</span>
+        <img src="/img/logo.jpg" alt="WOW · детская студия" class="w-10 h-10 rounded-full object-cover shadow-sm group-hover:scale-105 transition-transform" />
         <span class="hidden sm:inline eyebrow !tracking-[0.18em] !text-[10px] pt-1">детская студия</span>
       </a>
       <div class="hidden lg:flex items-center gap-7 font-body text-[14px] font-semibold">
@@ -125,7 +124,7 @@
 
         <div class="reveal order-1 lg:order-2 relative mx-auto w-full max-w-sm">
           <div class="absolute -inset-5 bg-pink/15 blur-3xl rounded-full -z-10"></div>
-          <div class="card overflow-hidden p-2.5 shadow-[var(--shadow)] floaty">
+          <div class="card overflow-hidden p-2.5 shadow-[var(--shadow)] tilt">
             <img src="/heroes/silver-show.jpg" alt="Дети на празднике WOW" class="w-full aspect-[3/4.2] object-cover rounded-[20px]" />
           </div>
           <div class="absolute -bottom-5 left-1/2 -translate-x-1/2 card bg-surface !rounded-full px-6 py-3 shadow-[var(--shadow)] flex items-center gap-2 whitespace-nowrap">
@@ -177,7 +176,7 @@
     <div class="container-wow">
       <div class="max-w-3xl mb-16 md:mb-24">
         <p class="eyebrow reveal mb-4">— Как проходит праздник</p>
-        <h2 class="reveal font-display font-bold tracking-tight text-[clamp(2.2rem,5.5vw,3.8rem)] leading-[1.06] mb-6">От встречи героя <span class="text-gold italic">до финала</span></h2>
+        <h2 class="reveal font-display font-bold tracking-tight text-[clamp(2.2rem,5.5vw,3.8rem)] leading-[1.06] mb-6">От встречи героя <span class="text-pink italic">до финала</span></h2>
         <p class="reveal font-body italic text-[clamp(1.05rem,2vw,1.25rem)] text-ink-soft leading-relaxed border-l-2 border-line-strong pl-5 max-w-xl">
           Каждый праздник идёт по продуманному сценарию — четыре этапа, выверенные за 8 лет работы. Ребёнок ни на секунду не остаётся без внимания.
         </p>
@@ -185,51 +184,51 @@
 
       <div class="steps-flow">
         <article class="step reveal">
+          <img class="step-img tilt" src="/img/hero.jpg" alt="Встреча с героем" />
           <div class="step-head">
-            <span class="step-index">01 // ВСТРЕЧА</span>
+            <span class="step-index">01</span>
             <div>
               <h3 class="step-title">Встреча и знакомство</h3>
               <p class="step-desc">Герой эффектно появляется и за минуту находит общий язык даже с самыми стеснительными ребятами.</p>
               <div class="step-meta eyebrow">~10 минут · вовлечение</div>
             </div>
           </div>
-          <img class="step-img" src="/img/hero.jpg" alt="Встреча с героем" />
         </article>
 
         <article class="step reveal">
-          <img class="step-img" src="/heroes/social.jpg" alt="Игры и квест" />
           <div class="step-head">
-            <span class="step-index">02 // КВЕСТ</span>
+            <span class="step-index">02</span>
             <div>
               <h3 class="step-title">Игры и квест по сценарию</h3>
               <p class="step-desc">Погружение в тематическую историю: активные игры, задания и командные миссии под возраст детей.</p>
               <div class="step-meta eyebrow">~30 минут · сюжет и активности</div>
             </div>
           </div>
+          <img class="step-img tilt" src="/heroes/social.jpg" alt="Игры и квест" />
         </article>
 
         <article class="step reveal">
+          <img class="step-img tilt" src="/heroes/silver-show.jpg" alt="Шоу-программа" />
           <div class="step-head">
-            <span class="step-index">03 // ШОУ</span>
+            <span class="step-index">03</span>
             <div>
               <h3 class="step-title">Шоу-программа</h3>
               <p class="step-desc">Серебро, мыльные пузыри, неон или химия — зрелищная часть, от которой в восторге дети и взрослые.</p>
               <div class="step-meta eyebrow">~20 минут · WOW-момент</div>
             </div>
           </div>
-          <img class="step-img" src="/heroes/silver-show.jpg" alt="Шоу-программа" />
         </article>
 
         <article class="step reveal">
-          <img class="step-img" src="/heroes/ladybug.jpg" alt="Финал и подарок" />
           <div class="step-head">
-            <span class="step-index">04 // ФИНАЛ</span>
+            <span class="step-index">04</span>
             <div>
               <h3 class="step-title">Финал и подарок</h3>
               <p class="step-desc">Торжественное поздравление, вынос торта и памятный сюрприз от студии на добрую память.</p>
               <div class="step-meta eyebrow">~10 минут · кульминация</div>
             </div>
           </div>
+          <img class="step-img tilt" src="/heroes/ladybug.jpg" alt="Финал и подарок" />
         </article>
       </div>
     </div>
@@ -266,9 +265,11 @@
       <div class="expand-sticky">
         <div class="expand-bg" style="background-image:url('/img/video-bg.jpg')"></div>
         <div class="expand-fade"></div>
-        <div class="expand-heading absolute inset-0 flex flex-col items-center justify-center text-center px-6 pointer-events-none">
-          <p class="eyebrow mb-3">— Галерея</p>
-          <h2 class="font-display font-bold tracking-tight text-[clamp(2.2rem,6vw,4.5rem)] leading-tight [text-shadow:0_2px_18px_rgba(255,255,255,0.5)]">Так это выглядит вживую</h2>
+        <div class="expand-heading absolute inset-0 flex items-center justify-center text-center px-6 pointer-events-none">
+          <h2 class="expand-title">
+            <span class="expand-line expand-line-1">Так это</span>
+            <span class="expand-line expand-line-2">выглядит вживую</span>
+          </h2>
         </div>
         <div class="expand-media">
           <video src="/video/show.mp4" autoplay muted loop playsinline preload="auto"></video>
@@ -423,7 +424,7 @@
         </div>
       </div>
     </div>
-    <div class="container-wow mt-8 text-xs text-muted">© 2026 WOW · детская студия. Создаём детство волшебным.</div>
+    <div class="container-wow mt-8 text-xs text-muted">© 2026 WOW · детская студия. Делаем детство волшебным.</div>
   </footer>
 
   <script type="module" src="/src/main.js"></script>
