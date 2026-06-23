@@ -37,7 +37,9 @@
 
   <!-- ============ 1 + 8. HERO (full screen, content hard-left) ============ -->
   <section id="top" class="relative h-[100svh] min-h-[100svh] flex items-center overflow-hidden">
-    <div class="absolute inset-0 -z-10 bg-center bg-cover" style="background-image:url('/img/hero.jpg')"></div>
+    <div class="absolute inset-0 -z-10 bg-center bg-cover" style="background-image:url('/img/hero2.jpg')"></div>
+    <!-- palette tint: #ece8de @ 30% to calm the bright sky -->
+    <div class="absolute inset-0 -z-10" style="background:var(--bg);opacity:0.30"></div>
     <div class="absolute inset-0 -z-10 bg-gradient-to-t from-bg/45 via-transparent to-transparent"></div>
 
     <div class="w-full pl-5 pr-5 md:pl-12 md:pr-8">
@@ -124,8 +126,8 @@
 
         <div class="reveal order-1 lg:order-2 relative mx-auto w-full max-w-sm">
           <div class="absolute -inset-5 bg-pink/15 blur-3xl rounded-full -z-10"></div>
-          <div class="card overflow-hidden p-2.5 shadow-[var(--shadow)] tilt">
-            <img src="/heroes/silver-show.jpg" alt="Дети на празднике WOW" class="w-full aspect-[3/4.2] object-cover rounded-[20px]" />
+          <div class="card overflow-hidden p-2.5 shadow-[var(--shadow)] floaty">
+            <img src="/heroes/studio.jpg" alt="Аниматор WOW и дети на празднике" class="w-full aspect-[3/4.2] object-cover rounded-[20px]" />
           </div>
           <div class="absolute -bottom-5 left-1/2 -translate-x-1/2 card bg-surface !rounded-full px-6 py-3 shadow-[var(--shadow)] flex items-center gap-2 whitespace-nowrap">
             <span class="font-display font-bold text-pink text-2xl">5.0</span>
@@ -184,9 +186,21 @@
 
       <div class="steps-flow">
         <article class="step reveal">
-          <img class="step-img tilt" src="/img/hero.jpg" alt="Встреча с героем" />
+          <img class="step-img tilt" src="/steps/01.jpg" alt="Встреча и знакомство с героем" />
           <div class="step-head">
             <span class="step-index">01</span>
+            <div>
+              <h3 class="step-title">Игры и квест по сценарию</h3>
+              <p class="step-desc">Погружение в тематическую историю: активные игры, задания и командные миссии под возраст детей.</p>
+              <div class="step-meta eyebrow">~30 минут · сюжет и активности</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="step reveal">
+          <img class="step-img tilt" src="/steps/02.jpg" alt="Игры и квест по сценарию" />
+          <div class="step-head">
+            <span class="step-index">02</span>
             <div>
               <h3 class="step-title">Встреча и знакомство</h3>
               <p class="step-desc">Герой эффектно появляется и за минуту находит общий язык даже с самыми стеснительными ребятами.</p>
@@ -196,39 +210,27 @@
         </article>
 
         <article class="step reveal">
-          <div class="step-head">
-            <span class="step-index">02</span>
-            <div>
-              <h3 class="step-title">Игры и квест по сценарию</h3>
-              <p class="step-desc">Погружение в тематическую историю: активные игры, задания и командные миссии под возраст детей.</p>
-              <div class="step-meta eyebrow">~30 минут · сюжет и активности</div>
-            </div>
-          </div>
-          <img class="step-img tilt" src="/heroes/social.jpg" alt="Игры и квест" />
-        </article>
-
-        <article class="step reveal">
-          <img class="step-img tilt" src="/heroes/silver-show.jpg" alt="Шоу-программа" />
+          <img class="step-img tilt" src="/steps/03.jpg" alt="Шоу-программа" />
           <div class="step-head">
             <span class="step-index">03</span>
-            <div>
-              <h3 class="step-title">Шоу-программа</h3>
-              <p class="step-desc">Серебро, мыльные пузыри, неон или химия — зрелищная часть, от которой в восторге дети и взрослые.</p>
-              <div class="step-meta eyebrow">~20 минут · WOW-момент</div>
-            </div>
-          </div>
-        </article>
-
-        <article class="step reveal">
-          <div class="step-head">
-            <span class="step-index">04</span>
             <div>
               <h3 class="step-title">Финал и подарок</h3>
               <p class="step-desc">Торжественное поздравление, вынос торта и памятный сюрприз от студии на добрую память.</p>
               <div class="step-meta eyebrow">~10 минут · кульминация</div>
             </div>
           </div>
-          <img class="step-img tilt" src="/heroes/ladybug.jpg" alt="Финал и подарок" />
+        </article>
+
+        <article class="step reveal">
+          <img class="step-img tilt" src="/steps/04.jpg" alt="Финал и подарок" />
+          <div class="step-head">
+            <span class="step-index">04</span>
+            <div>
+              <h3 class="step-title">Шоу-программа</h3>
+              <p class="step-desc">Серебро, мыльные пузыри, неон или химия — зрелищная часть, от которой в восторге дети и взрослые.</p>
+              <div class="step-meta eyebrow">~20 минут · WOW-момент</div>
+            </div>
+          </div>
         </article>
       </div>
     </div>
@@ -263,7 +265,8 @@
   <section id="live" class="relative">
     <div id="expand" class="expand-wrap">
       <div class="expand-sticky">
-        <div class="expand-bg" style="background-image:url('/img/video-bg.jpg')"></div>
+        <div class="expand-bg" style="background-image:url('/img/video-bg2.jpg')"></div>
+        <div class="expand-tint"></div>
         <div class="expand-fade"></div>
         <div class="expand-heading absolute inset-0 flex items-center justify-center text-center px-6 pointer-events-none">
           <h2 class="expand-title">
@@ -280,11 +283,10 @@
 
     <div class="container-wow py-20 md:py-28">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <figure class="reveal aspect-[4/5] card overflow-hidden grid place-items-center text-muted"><span class="text-sm">фото скоро</span></figure>
-        <figure class="reveal aspect-[4/5] card overflow-hidden grid place-items-center text-muted"><span class="text-sm">фото скоро</span></figure>
-        <figure class="reveal aspect-[4/5] card overflow-hidden grid place-items-center text-muted"><span class="text-sm">фото скоро</span></figure>
+        <figure class="reveal aspect-[4/5] card overflow-hidden"><img src="/live/1.jpg" alt="Праздник студии WOW" class="w-full h-full object-cover" /></figure>
+        <figure class="reveal aspect-[4/5] card overflow-hidden"><img src="/live/2.jpg" alt="Праздник студии WOW" class="w-full h-full object-cover" /></figure>
+        <figure class="reveal aspect-[4/5] card overflow-hidden"><img src="/live/3.jpg" alt="Праздник студии WOW" class="w-full h-full object-cover" /></figure>
       </div>
-      <p class="reveal text-center text-sm text-muted mt-6">Сюда добавим фото и видео с реальных праздников — место уже готово.</p>
     </div>
   </section>
 

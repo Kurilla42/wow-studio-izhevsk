@@ -65,10 +65,11 @@ if (expandWrap && !prefersReduced) {
   })
   tl.fromTo(media,
       { width: () => sizes().startW, height: () => sizes().startH },
-      { width: () => sizes().endW, height: () => sizes().endH, borderRadius: 16, ease: 'none' }, 0)
-    .to(fade, { opacity: 1, ease: 'none' }, 0)                                 // backdrop -> block background colour
-    .to(line1, { x: () => -window.innerWidth * 0.62, ease: 'none' }, 0)        // two lines slide apart
-    .to(line2, { x: () => window.innerWidth * 0.62, ease: 'none' }, 0)
+      { width: () => sizes().endW, height: () => sizes().endH, borderRadius: 16, ease: 'none', duration: 1 }, 0)
+    .to(fade, { opacity: 1, ease: 'none', duration: 1 }, 0)                                 // backdrop -> block background colour
+    .to(line1, { x: () => -window.innerWidth * 0.62, ease: 'none', duration: 1 }, 0)        // two lines slide apart
+    .to(line2, { x: () => window.innerWidth * 0.62, ease: 'none', duration: 1 }, 0)
+    .to([line1, line2], { opacity: 0, ease: 'none', duration: 0.85 }, 0)                    // and fade out, fully gone near the end
 }
 
 /* ============ Reviews slider (single big testimonial) ============ */
@@ -111,7 +112,7 @@ sections.forEach((sec, i) => {
 /* ============ 3D tilt on image cards (mouse / desktop only) ============ */
 const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches
 if (canHover) {
-  const MAX = 13 // max tilt angle in degrees
+  const MAX = 7 // max tilt angle in degrees
   document.querySelectorAll('.tilt').forEach((el) => {
     let rect = null
     el.addEventListener('mouseenter', () => { rect = el.getBoundingClientRect() })
@@ -119,8 +120,8 @@ if (canHover) {
       if (!rect) rect = el.getBoundingClientRect()
       const nx = ((e.clientX - rect.left) / rect.width) * 2 - 1   // -1 .. 1
       const ny = ((e.clientY - rect.top) / rect.height) * 2 - 1   // -1 .. 1
-      // tilt away from the cursor ("pressure"): rotateX = ny, rotateY = -nx
-      el.style.transform = `perspective(800px) rotateX(${(ny * MAX).toFixed(2)}deg) rotateY(${(-nx * MAX).toFixed(2)}deg) scale(1.02)`
+      // tilt toward the cursor — the point under it is pressed "into" the screen
+      el.style.transform = `perspective(800px) rotateX(${(-ny * MAX).toFixed(2)}deg) rotateY(${(nx * MAX).toFixed(2)}deg) scale(1.02)`
     })
     el.addEventListener('mouseleave', () => {
       rect = null
