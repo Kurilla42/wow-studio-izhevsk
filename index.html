@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WOW — детская студия в Ижевске · Аниматоры на праздник</title>
+  <script>document.documentElement.classList.add('js')</script>
+  <meta name="description" content="Детская студия WOW в Ижевске. Аниматоры на день рождения и праздник: шоу, квесты, любимые персонажи. 8 лет создаём волшебство, рейтинг 5.0 в ВК." />
+  <link rel="icon" type="image/jpeg" href="/img/logo.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body>
+
+  <!-- ============ NAV ============ -->
+  <header class="fixed top-0 inset-x-0 z-50">
+    <nav class="container-wow flex items-center justify-between py-4">
+      <a href="#top" class="flex items-center gap-3 group">
+        <img src="/img/logo.jpg" alt="WOW" class="w-11 h-11 rounded-full object-cover shadow-sm group-hover:scale-105 transition-transform" />
+        <span class="font-display font-bold text-xl tracking-tight text-pink">WOW</span>
+        <span class="hidden sm:inline eyebrow !tracking-[0.18em] !text-[10px] pt-1">детская студия</span>
+      </a>
+
+      <div class="hidden lg:flex items-center gap-7 font-body text-[14px] font-semibold">
+        <a href="#trust" class="hover:text-pink transition-colors"><span class="text-muted mr-1">01</span>Студия</a>
+        <a href="#heroes" class="hover:text-pink transition-colors"><span class="text-muted mr-1">02</span>Герои</a>
+        <a href="#how" class="hover:text-pink transition-colors"><span class="text-muted mr-1">03</span>Праздник</a>
+        <a href="#pricing" class="hover:text-pink transition-colors"><span class="text-muted mr-1">04</span>Цены</a>
+        <a href="#reviews" class="hover:text-pink transition-colors"><span class="text-muted mr-1">05</span>Отзывы</a>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <button id="theme-toggle" aria-label="Сменить тему" class="w-10 h-10 rounded-full border border-line-strong flex items-center justify-center hover:border-pink hover:text-pink transition-colors">
+          <span data-theme-icon class="text-[18px]">☀︎</span>
+        </button>
+        <a href="#contact" class="btn-pink font-body font-bold text-[14px] px-5 py-2.5 rounded-full hidden sm:inline-flex">Забронировать</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ============ 1. HERO ============ -->
+  <section id="top" class="relative min-h-[100svh] flex items-center overflow-hidden">
+    <div class="absolute inset-0 -z-10 bg-center bg-cover" style="background-image:url('/img/hero.jpg')"></div>
+    <!-- gentle wash only at bottom for text legibility, no card -->
+    <div class="absolute inset-0 -z-10 bg-gradient-to-t from-bg/55 via-transparent to-transparent"></div>
+
+    <div class="container-wow w-full pt-28 pb-16">
+      <div class="max-w-2xl">
+        <div class="hero-anim flex flex-wrap items-center gap-2 mb-6">
+          <span class="inline-flex items-center gap-2 bg-surface/85 backdrop-blur-md text-ink px-4 py-2 rounded-full text-[13px] font-bold shadow-sm border border-white/60">
+            ★ Рейтинг 5.0 в ВКонтакте
+          </span>
+          <span class="inline-flex items-center gap-2 bg-pink/90 text-white px-4 py-2 rounded-full text-[13px] font-bold shadow-sm">
+            8 лет в Ижевске
+          </span>
+        </div>
+
+        <h1 class="hero-anim hero-title font-display font-bold leading-[1.05] tracking-tight text-[clamp(2.6rem,7vw,5.2rem)] mb-6">
+          <span class="hero-outline block">Превращаем мечты</span>
+          <span class="hero-outline block">ребёнка в <span class="squiggle relative inline-block">настоящий праздник
+            <svg class="absolute left-0 -bottom-2 w-full h-3" viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M0 6 Q 25 0 50 5 T 100 4" fill="transparent" stroke="currentColor" stroke-width="4" stroke-linecap="round"/></svg>
+          </span></span>
+        </h1>
+
+        <p class="hero-anim font-body text-[clamp(1.05rem,2vw,1.35rem)] text-ink-soft max-w-xl mb-9 [text-shadow:0_1px_10px_rgba(255,255,255,0.6)]">
+          Аниматоры на день рождения и праздник в Ижевске. Любимые персонажи, авторские шоу и квесты под любой возраст — от 1 до 14 лет.
+        </p>
+
+        <div class="hero-anim flex flex-wrap gap-3">
+          <a href="#contact" class="btn-pink font-body font-bold px-7 py-4 rounded-full text-[17px] inline-flex items-center gap-2">
+            Забронировать праздник →
+          </a>
+          <a href="#heroes" class="btn-ghost font-body font-bold px-7 py-4 rounded-full text-[17px] inline-flex items-center backdrop-blur-md">
+            Смотреть персонажей
+          </a>
+        </div>
+
+        <div class="hero-anim mt-10 flex flex-wrap gap-x-7 gap-y-3 text-[14px] font-semibold text-ink [text-shadow:0_1px_8px_rgba(255,255,255,0.7)]">
+          <span class="inline-flex items-center gap-2">✓ Работаем по договору</span>
+          <span class="inline-flex items-center gap-2">✓ Свои костюмы</span>
+          <span class="inline-flex items-center gap-2">✓ Замена при форс-мажоре</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 2. TRUST (merged "волшебство" + "почему доверяют") ============ -->
+  <section id="trust" class="py-24 md:py-32">
+    <div class="container-wow">
+      <div class="max-w-3xl mx-auto text-center mb-14 md:mb-20">
+        <p class="eyebrow reveal mb-4">— Наша студия</p>
+        <h2 class="reveal font-display font-bold tracking-tight text-[clamp(2rem,5vw,3.4rem)] leading-[1.08] mb-6">
+          Создаём волшебство каждый день
+        </h2>
+        <p class="reveal font-body text-[clamp(1.05rem,2vw,1.25rem)] text-ink-soft leading-relaxed">
+          WOW — команда профессиональных актёров, режиссёров и декораторов. Уже 8 лет мы дарим детям Ижевска настоящую сказку, в которую веришь. Мы продумываем каждую деталь: от пуговицы на костюме до интонации любимого героя — чтобы радовался ребёнок и был спокоен родитель.
+        </p>
+      </div>
+
+      <div class="grid lg:grid-cols-[1fr_minmax(280px,420px)_1fr] gap-8 lg:gap-10 items-center">
+        <!-- left features -->
+        <ul class="flex flex-col gap-7 lg:text-right order-2 lg:order-1">
+          <li class="reveal trust-item">
+            <h3 class="font-display font-semibold text-xl mb-1.5">Опытные актёры</h3>
+            <p class="font-body text-muted">Задорные, любящие детей люди с педагогическим подходом к каждому ребёнку.</p>
+          </li>
+          <li class="reveal trust-item">
+            <h3 class="font-display font-semibold text-xl mb-1.5">Костюмы как в кино</h3>
+            <p class="font-body text-muted">Свои костюмы и реквизит — персонажи выглядят максимально достоверно.</p>
+          </li>
+          <li class="reveal trust-item">
+            <h3 class="font-display font-semibold text-xl mb-1.5">Праздник состоится</h3>
+            <p class="font-body text-muted">Заболел аниматор — выйдет замена. Мы не подводим в день праздника.</p>
+          </li>
+        </ul>
+
+        <!-- central elongated image in big frame -->
+        <div class="reveal order-1 lg:order-2 relative mx-auto w-full max-w-sm">
+          <div class="absolute -inset-5 bg-pink/15 blur-3xl rounded-full -z-10"></div>
+          <div class="card overflow-hidden p-2.5 shadow-[var(--shadow)] floaty">
+            <img src="/heroes/silver-show.jpg" alt="Дети на празднике WOW" class="w-full aspect-[3/4.2] object-cover rounded-[20px]" />
+          </div>
+          <div class="absolute -bottom-5 left-1/2 -translate-x-1/2 bg-surface card !rounded-full px-6 py-3 shadow-[var(--shadow)] flex items-center gap-2 whitespace-nowrap">
+            <span class="font-display font-bold text-pink text-2xl">5.0</span>
+            <span class="font-body text-sm text-muted leading-tight">рейтинг<br>в ВКонтакте</span>
+          </div>
+        </div>
+
+        <!-- right features -->
+        <ul class="flex flex-col gap-7 order-3">
+          <li class="reveal trust-item">
+            <h3 class="font-display font-semibold text-xl mb-1.5">Авторские сценарии</h3>
+            <p class="font-body text-muted">Никаких заезженных конкурсов — программа собирается под интересы ребёнка.</p>
+          </li>
+          <li class="reveal trust-item">
+            <h3 class="font-display font-semibold text-xl mb-1.5">Официально, по договору</h3>
+            <p class="font-body text-muted">Прозрачные условия и предоплата — всё честно и без сюрпризов.</p>
+          </li>
+          <li class="reveal trust-item">
+            <h3 class="font-display font-semibold text-xl mb-1.5">8 лет и 5000+ семей</h3>
+            <p class="font-body text-muted">Нам доверяют праздники тысячи родителей Ижевска и Удмуртии.</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 3. HEROES (tight monolithic grid) ============ -->
+  <section id="heroes" class="py-20 md:py-28 bg-bg-warm">
+    <div class="container-wow">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-5 mb-10">
+        <div>
+          <p class="eyebrow reveal mb-3">— Каталог</p>
+          <h2 class="reveal font-display font-bold tracking-tight text-[clamp(2rem,5vw,3.4rem)] leading-tight">Наши герои</h2>
+          <p class="reveal font-body text-muted mt-2 max-w-xl">Более 50 программ и персонажей для любого возраста и повода.</p>
+        </div>
+        <a href="#contact" class="reveal font-body font-bold text-pink inline-flex items-center gap-1 hover:gap-2 transition-all">Подобрать персонажа →</a>
+      </div>
+
+      <!-- filter tabs -->
+      <div class="reveal flex flex-wrap gap-2 mb-6">
+        <button class="px-5 py-2 rounded-full text-sm font-bold btn-pink">Все</button>
+        <button class="px-5 py-2 rounded-full text-sm font-bold border border-line-strong hover:border-pink hover:text-pink transition-colors">Супергерои</button>
+        <button class="px-5 py-2 rounded-full text-sm font-bold border border-line-strong hover:border-pink hover:text-pink transition-colors">Принцессы</button>
+        <button class="px-5 py-2 rounded-full text-sm font-bold border border-line-strong hover:border-pink hover:text-pink transition-colors">Шоу</button>
+        <button class="px-5 py-2 rounded-full text-sm font-bold border border-line-strong hover:border-pink hover:text-pink transition-colors">Квесты</button>
+      </div>
+
+      <!-- monolithic tight grid -->
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-[3px] rounded-[24px] overflow-hidden reveal">
+        <figure class="group relative aspect-square overflow-hidden">
+          <img src="/heroes/ladybug.jpg" alt="Божья коровка" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+        </figure>
+        <figure class="group relative aspect-square overflow-hidden">
+          <img src="/heroes/social.jpg" alt="Вечеринка с блогером" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+        </figure>
+        <figure class="group relative aspect-square overflow-hidden">
+          <img src="/heroes/silver-show.jpg" alt="Серебряное шоу" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+        </figure>
+      </div>
+      <p class="reveal text-center text-sm text-muted mt-5">Это лишь часть программ — полный список присылаем в ВКонтакте или WhatsApp.</p>
+    </div>
+  </section>
+
+  <!-- ============ 4. HOW (pinned scroll storybook) ============ -->
+  <section id="how" class="relative">
+    <div class="container-wow pt-24 md:pt-32 pb-10 text-center">
+      <p class="eyebrow reveal mb-4">— Как проходит праздник</p>
+      <h2 class="reveal font-display font-bold tracking-tight text-[clamp(2rem,5vw,3.4rem)] leading-tight">От встречи героя до финала</h2>
+    </div>
+
+    <div id="story" class="story-wrap">
+      <div class="story-sticky">
+        <div class="container-wow grid md:grid-cols-2 gap-8 md:gap-14 items-center w-full">
+          <!-- text side -->
+          <div class="order-2 md:order-1">
+            <div class="story-num font-display font-bold text-pink leading-none text-[clamp(4rem,12vw,9rem)]">01</div>
+            <h3 class="story-title font-display font-bold text-[clamp(1.6rem,4vw,2.6rem)] mt-2 mb-4 leading-tight">Встреча и знакомство</h3>
+            <p class="story-text font-body text-lg text-ink-soft max-w-md">Герой эффектно появляется и за минуту находит общий язык даже с самыми стеснительными ребятами.</p>
+            <div class="story-meta eyebrow mt-6">~10 минут · разморозка и вовлечение</div>
+          </div>
+          <!-- image side -->
+          <div class="order-1 md:order-2 relative">
+            <div class="story-photos relative aspect-[4/3] w-full">
+              <img src="/img/hero.jpg" class="story-img" alt="Встреча с героем" />
+              <img src="/heroes/social.jpg" class="story-img" alt="Игры и квест" />
+              <img src="/heroes/silver-show.jpg" class="story-img" alt="Шоу" />
+              <img src="/heroes/ladybug.jpg" class="story-img" alt="Финал" />
+            </div>
+          </div>
+        </div>
+
+        <!-- progress dots -->
+        <div class="container-wow mt-8 flex gap-2">
+          <span class="story-dot"></span><span class="story-dot"></span><span class="story-dot"></span><span class="story-dot"></span>
+        </div>
+      </div>
+
+      <!-- step content fed to JS -->
+      <div id="story-data" hidden>
+        <div data-num="01" data-title="Встреча и знакомство" data-text="Герой эффектно появляется и за минуту находит общий язык даже с самыми стеснительными ребятами." data-meta="~10 минут · разморозка и вовлечение"></div>
+        <div data-num="02" data-title="Игры и квест по сценарию" data-text="Погружение в тематическую историю: активные игры, задания и командные миссии под возраст детей." data-meta="~30 минут · сюжет и активности"></div>
+        <div data-num="03" data-title="Шоу-программа" data-text="Серебро, мыльные пузыри, неон или химия — зрелищная часть, от которой в восторге дети и взрослые." data-meta="~20 минут · WOW-момент"></div>
+        <div data-num="04" data-title="Финал и подарок" data-text="Торжественное поздравление, вынос торта и памятный сюрприз от студии на добрую память." data-meta="~10 минут · кульминация"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 5. PRICING ============ -->
+  <section id="pricing" class="py-24 md:py-32">
+    <div class="container-wow">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-12">
+        <div>
+          <h2 class="reveal font-display font-bold tracking-tight text-[clamp(2.6rem,8vw,5.5rem)] leading-none">Цены</h2>
+          <p class="reveal font-body text-xl text-muted italic mt-4">Честно, без скрытых доплат</p>
+        </div>
+        <p class="reveal eyebrow md:text-right">Прайс-лист студии WOW · Ижевск</p>
+      </div>
+
+      <div class="border-t border-line-strong">
+        <div class="price-row reveal">
+          <div>
+            <h3 class="font-display font-semibold text-2xl">1 персонаж · 1 час</h3>
+            <p class="text-sm text-muted mt-1 uppercase tracking-widest">до 12 детей, в пределах города</p>
+          </div>
+          <div class="price-tag">3 500 ₽</div>
+        </div>
+        <div class="price-row reveal">
+          <div>
+            <h3 class="font-display font-semibold text-2xl">1 персонаж · 1,5 часа</h3>
+            <p class="text-sm text-muted mt-1 uppercase tracking-widest">расширенная программа</p>
+          </div>
+          <div class="price-tag">5 000 ₽</div>
+        </div>
+        <div class="price-row reveal">
+          <div>
+            <h3 class="font-display font-semibold text-2xl">2 персонажа · 1 час</h3>
+            <p class="text-sm text-muted mt-1 uppercase tracking-widest">для сада или если детей больше 12</p>
+          </div>
+          <div class="price-tag">5 500 ₽</div>
+        </div>
+        <div class="price-row reveal">
+          <div>
+            <h3 class="font-display font-semibold text-2xl">2 персонажа · 1,5 часа</h3>
+            <p class="text-sm text-muted mt-1 uppercase tracking-widest">большой праздник</p>
+          </div>
+          <div class="price-tag">8 000 ₽</div>
+        </div>
+      </div>
+
+      <div class="flex flex-col items-center gap-7 mt-14">
+        <p class="reveal text-sm text-muted text-center max-w-2xl">
+          Для отдалённых районов и праздников за городом стоимость выше — рассчитывается по тарифам такси. Точную цену под ваш праздник менеджер назовёт сразу.
+        </p>
+        <a href="#contact" class="reveal btn-pink font-body font-bold px-9 py-4 rounded-full text-[17px]">Рассчитать мой праздник</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 6. LIVE VIDEO (scroll-expanding) ============ -->
+  <section id="live" class="relative">
+    <div id="expand" class="expand-wrap">
+      <div class="expand-sticky">
+        <div class="absolute inset-0 bg-center bg-cover" style="background-image:url('/img/video-bg.jpg')"></div>
+        <div class="absolute inset-0 bg-bg/30"></div>
+
+        <div class="expand-heading absolute inset-0 flex flex-col items-center justify-center text-center px-6 z-20 pointer-events-none">
+          <p class="eyebrow mb-3 !text-ink">— Галерея</p>
+          <h2 class="font-display font-bold tracking-tight text-[clamp(2.2rem,6vw,4.5rem)] leading-tight">Так это выглядит вживую</h2>
+        </div>
+
+        <div class="expand-media z-10">
+          <video src="/video/show.mp4" autoplay muted loop playsinline preload="auto"></video>
+          <div class="expand-media-label">Праздники студии WOW</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- placeholder gallery revealed after expand -->
+    <div class="container-wow py-20 md:py-28">
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <figure class="reveal aspect-[4/5] card overflow-hidden grid place-items-center text-muted bg-surface-2"><span class="text-sm">фото скоро</span></figure>
+        <figure class="reveal aspect-[4/5] card overflow-hidden grid place-items-center text-muted bg-surface-2"><span class="text-sm">фото скоро</span></figure>
+        <figure class="reveal aspect-[4/5] card overflow-hidden grid place-items-center text-muted bg-surface-2"><span class="text-sm">фото скоро</span></figure>
+        <figure class="reveal aspect-[4/5] card overflow-hidden grid place-items-center text-muted bg-surface-2"><span class="text-sm">фото скоро</span></figure>
+        <figure class="reveal aspect-[4/5] card overflow-hidden grid place-items-center text-muted bg-surface-2"><span class="text-sm">фото скоро</span></figure>
+      </div>
+      <p class="reveal text-center text-sm text-muted mt-6">Сюда добавим фото и видео с реальных праздников — место уже готово.</p>
+    </div>
+  </section>
+
+  <!-- ============ 7. REVIEWS (numbers + text, no portrait) ============ -->
+  <section id="reviews" class="py-24 md:py-32 bg-bg-warm overflow-hidden">
+    <div class="container-wow">
+      <div class="text-center mb-14">
+        <p class="eyebrow reveal mb-3">— Отзывы</p>
+        <h2 class="reveal font-display font-bold tracking-tight text-[clamp(2rem,5vw,3.4rem)] leading-tight">Что говорят родители</h2>
+        <p class="reveal font-body text-muted mt-3">Рейтинг 5.0 и сотни тёплых отзывов в ВКонтакте и 2ГИС</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-5">
+        <blockquote class="reveal review-card">
+          <div class="review-num">01</div>
+          <div class="flex items-center gap-3 mb-4">
+            <span class="badge-src bg-[#0077FF]">VK</span>
+            <span class="text-gold tracking-widest">★★★★★</span>
+          </div>
+          <p class="font-display text-xl leading-snug mb-5">«Дети были в полном восторге от Человека-Паука! Костюм невероятный, а аниматор нашёл подход даже к самым стеснительным.»</p>
+          <footer class="text-sm"><span class="font-bold">Анна М.</span><span class="text-muted block uppercase tracking-widest text-xs mt-0.5">счастливая мама</span></footer>
+        </blockquote>
+
+        <blockquote class="reveal review-card">
+          <div class="review-num">02</div>
+          <div class="flex items-center gap-3 mb-4">
+            <span class="badge-src bg-[#A3C325]">2ГИС</span>
+            <span class="text-gold tracking-widest">★★★★★</span>
+          </div>
+          <p class="font-display text-xl leading-snug mb-5">«Заказывали квест на 7 лет. Динамично, интересно и профессионально. Родители смогли отдохнуть, пока дети спасали мир!»</p>
+          <footer class="text-sm"><span class="font-bold">Сергей К.</span><span class="text-muted block uppercase tracking-widest text-xs mt-0.5">довольный папа</span></footer>
+        </blockquote>
+
+        <blockquote class="reveal review-card">
+          <div class="review-num">03</div>
+          <div class="flex items-center gap-3 mb-4">
+            <span class="badge-src bg-[#0077FF]">VK</span>
+            <span class="text-gold tracking-widest">★★★★★</span>
+          </div>
+          <p class="font-display text-xl leading-snug mb-5">«Рапунцель будто сошла с экрана! Дочка до сих пор вспоминает шоу мыльных пузырей. Спасибо за настоящую сказку!»</p>
+          <footer class="text-sm"><span class="font-bold">Елена В.</span><span class="text-muted block uppercase tracking-widest text-xs mt-0.5">мама именинницы</span></footer>
+        </blockquote>
+      </div>
+
+      <div class="grid grid-cols-3 gap-4 mt-12 max-w-3xl mx-auto text-center">
+        <div class="reveal"><div class="font-display font-bold text-pink text-[clamp(2rem,5vw,3.2rem)]">8</div><div class="text-sm text-muted">лет на праздниках</div></div>
+        <div class="reveal"><div class="font-display font-bold text-pink text-[clamp(2rem,5vw,3.2rem)]">5.0</div><div class="text-sm text-muted">рейтинг в ВК</div></div>
+        <div class="reveal"><div class="font-display font-bold text-pink text-[clamp(2rem,5vw,3.2rem)]">50+</div><div class="text-sm text-muted">программ и героев</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 8. FINAL CTA (gradient card, left form / right contacts) ============ -->
+  <section id="contact" class="py-24 md:py-32">
+    <div class="container-wow">
+      <div class="cta-gradient rounded-[34px] overflow-hidden shadow-[var(--shadow)] grid lg:grid-cols-2">
+        <!-- left: form -->
+        <div class="p-8 md:p-12 bg-surface/95 backdrop-blur">
+          <h2 class="font-display font-bold text-[clamp(1.8rem,4vw,2.8rem)] leading-tight mb-2">Устроим лучший праздник</h2>
+          <p class="font-body text-muted mb-8">Оставьте заявку — менеджер ответит в ВК или WhatsApp в течение 15 минут.</p>
+          <form class="space-y-5" id="lead-form">
+            <div class="grid sm:grid-cols-2 gap-5">
+              <div>
+                <label class="block text-sm font-semibold mb-2">Как к вам обращаться?</label>
+                <input type="text" name="name" placeholder="Ваше имя" class="field" />
+              </div>
+              <div>
+                <label class="block text-sm font-semibold mb-2">Телефон</label>
+                <input type="tel" name="phone" placeholder="+7 (___) ___-__-__" class="field" />
+              </div>
+            </div>
+            <div>
+              <label class="block text-sm font-semibold mb-2">Пожелания (необязательно)</label>
+              <textarea name="note" rows="3" placeholder="Например: нужен Человек-Паук на 5 лет, 8 детей" class="field resize-none"></textarea>
+            </div>
+            <button type="button" class="btn-pink w-full font-body font-bold py-4 rounded-full text-[17px]">Отправить заявку →</button>
+            <p class="text-xs text-muted text-center">Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности.</p>
+          </form>
+        </div>
+
+        <!-- right: contacts on gradient -->
+        <div class="p-8 md:p-12 text-white flex flex-col justify-between gap-8">
+          <div>
+            <p class="uppercase tracking-[0.22em] text-xs font-bold text-white/70 mb-5">Контакты</p>
+            <a href="tel:+79124485518" class="block font-display font-bold text-[clamp(1.6rem,3.5vw,2.4rem)] hover:opacity-80 transition">+7 (912) 448-55-18</a>
+            <p class="text-white/80 mt-2">Елена — руководитель студии</p>
+          </div>
+
+          <div class="space-y-3 font-body">
+            <a href="https://vk.com/wow_izh18" target="_blank" rel="noopener" class="contact-link">ВКонтакте · vk.com/wow_izh18</a>
+            <a href="https://wa.me/79124485518" target="_blank" rel="noopener" class="contact-link">WhatsApp · написать сообщение</a>
+            <a href="mailto:cher-nova16@yandex.ru" class="contact-link">cher-nova16@yandex.ru</a>
+          </div>
+
+          <div class="text-white/80 text-sm border-t border-white/20 pt-6">
+            <p>Выезд по Ижевску и Удмуртии</p>
+            <p class="mt-1">Работаем ежедневно · отвечаем за 5 минут</p>
+          </div>
+
+          <div class="flex gap-3">
+            <a href="https://vk.com/wow_izh18" target="_blank" rel="noopener" class="social-dot">ВК</a>
+            <a href="https://wa.me/79124485518" target="_blank" rel="noopener" class="social-dot">WA</a>
+            <a href="tel:+79124485518" class="social-dot">☎</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="border-t border-line py-12">
+    <div class="container-wow flex flex-col md:flex-row justify-between gap-8">
+      <div class="max-w-xs">
+        <div class="flex items-center gap-3 mb-3">
+          <img src="/img/logo.jpg" alt="WOW" class="w-10 h-10 rounded-full object-cover" />
+          <span class="font-display font-bold text-lg text-pink">WOW · детская студия</span>
+        </div>
+        <p class="text-sm text-muted">8 лет создаём волшебные праздники для детей Ижевска и Удмуртии.</p>
+      </div>
+      <div class="flex gap-12 text-sm">
+        <div class="flex flex-col gap-2">
+          <span class="font-bold mb-1">Разделы</span>
+          <a href="#trust" class="text-muted hover:text-pink transition-colors">Студия</a>
+          <a href="#heroes" class="text-muted hover:text-pink transition-colors">Герои</a>
+          <a href="#pricing" class="text-muted hover:text-pink transition-colors">Цены</a>
+        </div>
+        <div class="flex flex-col gap-2">
+          <span class="font-bold mb-1">Контакты</span>
+          <a href="tel:+79124485518" class="text-muted hover:text-pink transition-colors">+7 (912) 448-55-18</a>
+          <a href="https://vk.com/wow_izh18" target="_blank" rel="noopener" class="text-muted hover:text-pink transition-colors">ВКонтакте</a>
+          <span class="text-muted">Ижевск, выезд по городу</span>
+        </div>
+      </div>
+    </div>
+    <div class="container-wow mt-8 text-xs text-muted">© 2026 WOW · детская студия. Создаём детство волшебным.</div>
+  </footer>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
