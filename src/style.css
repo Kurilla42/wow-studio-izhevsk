@@ -498,6 +498,8 @@ html.js .gal-item { clip-path: inset(0 0 100% 0); }
   .hero-bg { background-image: url('/img/hero_mobile_image.jpg') !important; }
   /* цена всегда на новой строке */
   .price-tag { flex-basis: 100%; }
+  /* скрыть текст описания в герое на мобилке */
+  #top > div > p { display: none; }
 }
 
 /* Custom cursor ring (desktop / mouse only) */
