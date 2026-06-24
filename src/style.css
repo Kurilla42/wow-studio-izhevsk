@@ -100,13 +100,9 @@ body {
 }
 .btn-ghost:hover { transform: translateY(-2px); border-color: var(--pink); color: var(--pink); }
 
-/* Hero text: dark glyphs with white outline so they read on the bright sky photo */
+/* Hero text */
 .hero-title { color: var(--ink); }
-.hero-outline {
-  -webkit-text-stroke: 2px rgba(255, 255, 255, 0.92);
-  paint-order: stroke fill;
-  text-shadow: 0 2px 18px rgba(255, 255, 255, 0.55);
-}
+.hero-outline { /* outline removed */ }
 
 /* Underline squiggle accent inherits pink */
 .squiggle { color: var(--pink); }
@@ -402,6 +398,15 @@ html.js .reveal.is-in { opacity: 1; transform: none; transition: opacity 0.7s ea
 .expand-line-1, .expand-line-2 { display: inline-flex; gap: 0.3em; white-space: nowrap; will-change: transform, opacity; }
 @media (max-width: 768px) {
   .expand-media { width: clamp(150px, 42vw, 230px); }
+}
+
+/* ---- Live photos row (below expanded video, minimal gap) ---- */
+.live-photos-row {
+  position: relative;
+  z-index: 21;
+  padding-top: 24px;
+  padding-bottom: 64px;
+  background: var(--bg);
 }
 
 /* ---- video block rides up over the pricing block on scroll ---- */
