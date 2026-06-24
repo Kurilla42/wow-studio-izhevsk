@@ -489,6 +489,10 @@ html.js .gal-item { clip-path: inset(0 0 100% 0); }
   color: var(--muted);
   user-select: none;
 }
+#rev-counter {
+  margin-top: 8px;
+  margin-right: -6px;
+}
 @media (hover: none), (pointer: coarse) {
   .magnetic-on { transform: none !important; }
 }
