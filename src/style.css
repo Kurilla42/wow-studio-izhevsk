@@ -32,8 +32,8 @@
   --color-pink-soft: var(--pink-soft);
   --color-gold: var(--gold);
 
-  --font-display: "Unbounded", system-ui, sans-serif;
-  --font-body: "Onest", system-ui, sans-serif;
+  --font-display: "Geologica", system-ui, sans-serif;
+  --font-body: "Golos Text", system-ui, sans-serif;
 
   --radius-card: 28px;
 }
