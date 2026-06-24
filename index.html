@@ -37,9 +37,7 @@
 
   <!-- ============ 1 + 8. HERO (full screen, content hard-left) ============ -->
   <section id="top" class="relative h-[100svh] min-h-[100svh] flex items-center overflow-hidden">
-    <div class="absolute inset-0 -z-10 bg-center bg-cover" style="background-image:url('/img/hero2.jpg')"></div>
-    <!-- palette tint: #ece8de @ 30% to calm the bright sky -->
-    <div class="absolute inset-0 -z-10" style="background:var(--bg);opacity:0.30"></div>
+    <div class="absolute inset-0 -z-10 bg-center bg-cover" style="background-image:url('/img/hero3.jpg')"></div>
     <div class="absolute inset-0 -z-10 bg-gradient-to-t from-bg/45 via-transparent to-transparent"></div>
 
     <div class="w-full pl-5 pr-5 md:pl-12 md:pr-8">
@@ -274,18 +272,17 @@
       <div class="zoom-sticky">
         <!-- centre: our video (zooms in, stops at current widescreen size) -->
         <div class="zoom-item zoom-video" data-scale="4">
-          <div class="zoom-box" style="width:min(21.5vw,300px);height:auto;aspect-ratio:16/9">
+          <div class="zoom-box" style="width:350px;height:auto;aspect-ratio:16/9">
             <video src="/video/show.mp4" autoplay muted loop playsinline preload="auto"></video>
           </div>
         </div>
-        <!-- 7 flanking photos -->
-        <div class="zoom-item" data-scale="5"><div class="zoom-box" style="top:-30vh;left:5vw;width:35vw;height:30vh"><img src="/live/1.jpg" alt="Праздник студии WOW" /></div></div>
-        <div class="zoom-item" data-scale="6"><div class="zoom-box" style="top:-10vh;left:-25vw;width:20vw;height:45vh"><img src="/live/2.jpg" alt="Праздник студии WOW" /></div></div>
-        <div class="zoom-item" data-scale="5"><div class="zoom-box" style="top:0;left:27.5vw;width:25vw;height:25vh"><img src="/live/3.jpg" alt="Праздник студии WOW" /></div></div>
+        <!-- 6 flanking photos (1↔2 swapped; 7→pos3; pos7 removed) -->
+        <div class="zoom-item" data-scale="5"><div class="zoom-box" style="top:-30vh;left:5vw;width:35vw;height:30vh"><img src="/live/2.jpg" alt="Праздник студии WOW" /></div></div>
+        <div class="zoom-item" data-scale="6"><div class="zoom-box" style="top:-10vh;left:-25vw;width:20vw;height:45vh"><img src="/live/1.jpg" alt="Праздник студии WOW" /></div></div>
+        <div class="zoom-item" data-scale="5"><div class="zoom-box" style="top:0;left:27.5vw;width:25vw;height:25vh"><img src="/live/7.jpg" alt="Праздник студии WOW" /></div></div>
         <div class="zoom-item" data-scale="6"><div class="zoom-box" style="top:27.5vh;left:5vw;width:20vw;height:25vh"><img src="/live/4.jpg" alt="Праздник студии WOW" /></div></div>
         <div class="zoom-item" data-scale="8"><div class="zoom-box" style="top:27.5vh;left:-22.5vw;width:30vw;height:25vh"><img src="/live/5.jpg" alt="Праздник студии WOW" /></div></div>
         <div class="zoom-item" data-scale="9"><div class="zoom-box" style="top:22.5vh;left:25vw;width:15vw;height:15vh"><img src="/live/6.jpg" alt="Праздник студии WOW" /></div></div>
-        <div class="zoom-item" data-scale="7"><div class="zoom-box" style="top:-26vh;left:-26vw;width:22vw;height:22vh"><img src="/live/7.jpg" alt="Праздник студии WOW" /></div></div>
       </div>
     </div>
   </section>
