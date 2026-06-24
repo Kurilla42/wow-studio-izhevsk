@@ -32,8 +32,8 @@
   --color-pink-soft: var(--pink-soft);
   --color-gold: var(--gold);
 
-  --font-display: "Comfortaa", system-ui, sans-serif;
-  --font-body: "Source Serif 4", Georgia, serif;
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-body: "Golos Text", system-ui, sans-serif;
 
   --radius-card: 28px;
 }
