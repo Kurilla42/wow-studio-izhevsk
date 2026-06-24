@@ -4,10 +4,8 @@ import Lenis from 'lenis'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { SplitText } from 'gsap/SplitText'
-import { Draggable } from 'gsap/Draggable'
-import { InertiaPlugin } from 'gsap/InertiaPlugin'
 
-gsap.registerPlugin(ScrollTrigger, SplitText, Draggable, InertiaPlugin)
+gsap.registerPlugin(ScrollTrigger, SplitText)
 
 const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches
@@ -162,63 +160,26 @@ if (zoom && zoomDesktop) {
   }
 }
 
-/* ============ Reviews: draggable swipe carousel with inertia ============ */
-const track = document.getElementById('rev-track')
-if (track) {
-  const stage = document.getElementById('reviews-stage')
+/* ============ Reviews slider (single big testimonial) ============ */
+const stage = document.getElementById('reviews-stage')
+if (stage) {
+  const slides = [...stage.querySelectorAll('.rev-slide')]
   const counter = document.getElementById('rev-counter')
-  const slides = [...track.children]
+  let idx = 0
   const total = slides.length
   const pad = (n) => String(n).padStart(2, '0')
-  const slideW = () => slides[0].offsetWidth
-  const clampIdx = (i) => Math.max(0, Math.min(total - 1, i))
-  let index = 0
-  const setCounter = () => { if (counter) counter.textContent = `${pad(index + 1)} / ${pad(total)}` }
-  setCounter()
-
-  if (!prefersReduced) {
-    let drag
-    const syncIndex = () => {
-      const i = clampIdx(Math.round(-gsap.getProperty(track, 'x') / slideW()))
-      if (i !== index) { index = i; setCounter() }
-    }
-    const goTo = (i) => {
-      index = clampIdx(i)
-      gsap.to(track, { x: -index * slideW(), duration: 0.6, ease: 'power3.out', onUpdate: () => drag && drag.update() })
-      setCounter()
-    }
-    drag = Draggable.create(track, {
-      type: 'x',
-      inertia: true,
-      bounds: stage,
-      edgeResistance: 0.9,
-      dragResistance: 0.05,
-      snap: { x: (v) => Math.round(v / slideW()) * slideW() },
-      onDrag: syncIndex,
-      onThrowUpdate: syncIndex,
-      onThrowComplete: syncIndex,
-      onDragEnd() {
-        // switch slide if dragged >20% of width OR fast flick (velocity > 400px/s)
-        const delta = this.x - (-index * slideW())
-        if (Math.abs(delta) > slideW() * 0.2 || Math.abs(this.getVelocity('x')) > 400) {
-          goTo(delta < 0 ? index + 1 : index - 1)
-        } else {
-          goTo(index)
-        }
-      },
-    })[0]
-
-    // gentle autoplay, paused while the visitor interacts
-    let timer
-    const play = () => { timer = setInterval(() => goTo(index >= total - 1 ? 0 : index + 1), 6500) }
-    const stop = () => clearInterval(timer)
-    play()
-    stage.addEventListener('pointerenter', stop)
-    stage.addEventListener('pointerdown', stop)
-    stage.addEventListener('pointerleave', () => { stop(); play() })
-
-    window.addEventListener('resize', () => { gsap.set(track, { x: -index * slideW() }); drag && drag.applyBounds() })
+  const show = (i) => {
+    idx = (i + total) % total
+    slides.forEach((s, k) => s.classList.toggle('is-active', k === idx))
+    if (counter) counter.textContent = `${pad(idx + 1)} / ${pad(total)}`
   }
+  document.querySelectorAll('[data-rev]').forEach((btn) => {
+    btn.addEventListener('click', () => show(idx + (btn.dataset.rev === 'next' ? 1 : -1)))
+  })
+  // gentle autoplay, paused on hover
+  let timer = setInterval(() => show(idx + 1), 7000)
+  stage.addEventListener('pointerenter', () => clearInterval(timer))
+  stage.addEventListener('pointerleave', () => { timer = setInterval(() => show(idx + 1), 7000) })
 }
 
 /* ============ Active nav link ============ */
