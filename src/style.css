@@ -327,95 +327,56 @@ html.js .reveal.is-in { opacity: 1; transform: none; transition: opacity 0.7s ea
 }
 .rev-arrow:hover { background: var(--pink); color: #fff; border-color: var(--pink); transform: translateY(-2px); }
 
-/* ---- Expanding video (scroll-driven; surroundings fade to block bg) ---- */
-.expand-wrap { height: 320vh; position: relative; }
-.expand-sticky {
+/* ---- Zoom parallax: our video in the centre, 7 photos zoom around it ----
+   A 300vh sticky scene. Every item scales from 1 to its own target as you
+   scroll; the centre video stops at ~current widescreen size, the photos scale
+   harder and slide off-screen, so you appear to "zoom into" the video. */
+#live { background: var(--bg); }
+.zoom-wrap { position: relative; height: 300vh; }
+.zoom-sticky {
   position: sticky;
   top: 0;
   height: 100svh;
   overflow: hidden;
-  display: grid;
-  place-items: center;
 }
-.expand-bg {
+.zoom-item {
   position: absolute;
   inset: 0;
-  background-size: cover;
-  background-position: center;
-  z-index: 0;
-}
-/* static tint: pulls the bright sky photo into the warm site palette (#ece8de @ 30%) */
-.expand-tint {
-  position: absolute;
-  inset: 0;
-  background: var(--bg);
-  opacity: 0.30;
-  z-index: 0;
-}
-/* overlay that fades from transparent -> block background colour as you scroll */
-.expand-fade {
-  position: absolute;
-  inset: 0;
-  background: var(--bg);
-  opacity: 0;
-  z-index: 1;
-}
-/* starts portrait ("mobile"), JS scrubs it to a padded widescreen */
-.expand-media {
-  position: relative;
-  z-index: 2;
-  width: clamp(160px, 17vw, 250px);
-  aspect-ratio: 9 / 16;
-  border-radius: 22px;
-  overflow: hidden;
-  box-shadow: 0 20px 48px -26px rgba(0, 0, 0, 0.28); /* ~half of the previous shadow */
-  will-change: width, height, border-radius;
-}
-.expand-media video { width: 100%; height: 100%; object-fit: cover; display: block; }
-.expand-media-label {
-  position: absolute;
-  left: 18px; bottom: 16px;
-  color: #fff;
-  font-family: var(--font-body);
-  font-weight: 600;
-  text-shadow: 0 2px 12px rgba(0,0,0,0.6);
-  z-index: 2;
-}
-/* one-line heading above the video; halves slide apart + fade on scroll */
-.expand-heading { z-index: 3; }
-.expand-title {
   display: flex;
-  flex-wrap: nowrap;
+  align-items: center;
   justify-content: center;
-  align-items: baseline;
-  gap: 0.3em;
-  white-space: nowrap;
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: clamp(1.6rem, 6vw, 4.6rem);   /* hero-sized */
-  line-height: 1.05;
+  will-change: transform;
 }
-.expand-line-1, .expand-line-2 { display: inline-flex; gap: 0.3em; white-space: nowrap; will-change: transform, opacity; }
-@media (max-width: 768px) {
-  .expand-media { width: clamp(150px, 42vw, 230px); }
-}
-
-/* ---- Live photos row (below expanded video, minimal gap) ---- */
-.live-photos-row {
+.zoom-item.zoom-video { z-index: 5; }   /* video stays in front, photos pass behind */
+.zoom-box {
   position: relative;
-  z-index: 21;
-  padding-top: 24px;
-  padding-bottom: 64px;
-  background: var(--bg);
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 24px 50px -28px rgba(0, 0, 0, 0.4);
 }
+.zoom-box img,
+.zoom-box video { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-/* ---- video block rides up over the pricing block on scroll ---- */
-#live { position: relative; z-index: 20; margin-top: -8vh; }
-.expand-bg, .expand-tint, .expand-fade {
-  border-top-left-radius: 40px;
-  border-top-right-radius: 40px;
+/* mobile: drop the parallax, show a simple static grid */
+@media (max-width: 768px) {
+  .zoom-wrap { height: auto; }
+  .zoom-sticky {
+    position: static;
+    height: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    padding: 4px 20px 8px;
+  }
+  .zoom-item { position: static; inset: auto; transform: none !important; }
+  .zoom-box {
+    top: auto !important; left: auto !important;
+    width: 100% !important; height: auto !important;
+    aspect-ratio: 4 / 3;
+  }
+  .zoom-item.zoom-video { grid-column: span 2; }
+  .zoom-item.zoom-video .zoom-box { aspect-ratio: 16 / 9; }
 }
-.expand-bg { box-shadow: 0 -24px 60px -18px rgba(50, 35, 15, 0.30); }
 
 /* ---- 3D tilt on image cards (desktop / mouse only) ---- */
 .tilt {

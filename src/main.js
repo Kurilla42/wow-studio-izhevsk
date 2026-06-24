@@ -39,51 +39,31 @@ document.querySelectorAll('.reveal').forEach((el) => {
 })
 if (prefersReduced) document.querySelectorAll('.reveal').forEach((el) => el.classList.add('is-in'))
 
-/* ============ Expanding video: portrait -> padded widescreen ============ */
-const expandWrap = document.getElementById('expand')
-if (expandWrap && !prefersReduced) {
-  const media = expandWrap.querySelector('.expand-media')
-  const fade = expandWrap.querySelector('.expand-fade')
-  const line1 = expandWrap.querySelector('.expand-line-1')
-  const line2 = expandWrap.querySelector('.expand-line-2')
-
-  const sizes = () => {
-    const vw = window.innerWidth
-    const vh = window.innerHeight
-    // start: portrait ("mobile") — narrow and tall
-    let startW = Math.min(vw * 0.5, 235)
-    let startH = (startW * 16) / 9
-    if (startH > vh * 0.62) { startH = vh * 0.62; startW = (startH * 9) / 16 }
-    // end: padded widescreen — leaves margins around the block (not full bleed)
-    const endW = Math.min(vw * 0.86, 1180)
-    const endH = (endW * 9) / 16
-    return { startW, startH, endW, endH }
+/* ============ Zoom parallax: video centre + 7 photos scale around it ============ */
+/* Each .zoom-item scales from 1 to its data-scale across the 300vh scene, tied
+   to scroll. The centre video stops at ~current widescreen size; the photos
+   scale harder and slide off-screen — so you "zoom into" the video. */
+const zoom = document.getElementById('zoom')
+const zoomDesktop = window.matchMedia('(min-width: 769px)').matches
+if (zoom && zoomDesktop) {
+  const items = [...zoom.querySelectorAll('.zoom-item')]
+  if (prefersReduced) {
+    // static fallback: video at final size, flying photos hidden
+    items.forEach((item) => {
+      if (item.classList.contains('zoom-video')) gsap.set(item, { scale: parseFloat(item.dataset.scale) || 4 })
+      else gsap.set(item, { autoAlpha: 0 })
+    })
+  } else {
+    items.forEach((item) => {
+      gsap.fromTo(item,
+        { scale: 1 },
+        {
+          scale: parseFloat(item.dataset.scale) || 4,
+          ease: 'none',
+          scrollTrigger: { trigger: zoom, start: 'top top', end: 'bottom bottom', scrub: true, invalidateOnRefresh: true },
+        })
+    })
   }
-
-  const tl = gsap.timeline({
-    scrollTrigger: { trigger: expandWrap, start: 'top top', end: 'bottom bottom', scrub: 1, invalidateOnRefresh: true },
-  })
-  tl.fromTo(media,
-      { width: () => sizes().startW, height: () => sizes().startH },
-      { width: () => sizes().endW, height: () => sizes().endH, borderRadius: 16, ease: 'none', duration: 1 }, 0)
-    .to(fade, { opacity: 1, ease: 'none', duration: 1 }, 0)                                 // backdrop -> block background colour
-    .to(line1, { x: () => -window.innerWidth * 0.62, ease: 'none', duration: 1 }, 0)        // two lines slide apart
-    .to(line2, { x: () => window.innerWidth * 0.62, ease: 'none', duration: 1 }, 0)
-    .to([line1, line2], { opacity: 0, ease: 'none', duration: 0.85 }, 0)                    // and fade out, fully gone near the end
-}
-
-/* ============ Video block rides up over the pricing block ============ */
-/* #live overlaps pricing via a negative margin + higher z-index (see CSS).
-   A gentle parallax on the pricing content adds motion so the video panel
-   visibly "rides over" the prices as you scroll. (No transform on #live itself
-   — that would break the sticky video inside it.) */
-const liveEl = document.getElementById('live')
-if (liveEl && !prefersReduced) {
-  gsap.to('#pricing .container-wow', {
-    yPercent: -14,
-    ease: 'none',
-    scrollTrigger: { trigger: liveEl, start: 'top bottom', end: 'top top', scrub: true },
-  })
 }
 
 /* ============ Reviews slider (single big testimonial) ============ */

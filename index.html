@@ -261,41 +261,31 @@
     </div>
   </section>
 
-  <!-- ============ 7(3). LIVE VIDEO (scroll-expand into block bg) ============ -->
-  <section id="live" class="relative">
-    <div id="expand" class="expand-wrap">
-      <div class="expand-sticky">
-        <div class="expand-bg" style="background-image:url('/img/video-bg2.jpg')"></div>
-        <div class="expand-tint"></div>
-        <div class="expand-fade"></div>
-        <div class="expand-heading absolute inset-x-0 flex justify-center px-6 pointer-events-none" style="bottom:calc(50% + 215px)">
-          <h2 class="expand-title hero-title">
-            <span class="expand-line-1 hero-outline">Так&nbsp;это</span>
-            <span class="expand-line-2"><span class="hero-outline">выглядит</span><span class="hero-outline squiggle">вживую</span></span>
-          </h2>
-        </div>
-        <div class="expand-media">
-          <video src="/video/show.mp4" autoplay muted loop playsinline preload="auto"></video>
-          <div class="expand-media-label">Праздники студии WOW</div>
-        </div>
-
+  <!-- ============ 7(3). LIVE (zoom-parallax: video centre + 7 photos) ============ -->
+  <section id="live" class="pt-24 md:pt-32">
+    <div class="container-wow">
+      <div class="text-center max-w-3xl mx-auto mb-10 md:mb-14">
+        <p class="eyebrow reveal mb-3">— Атмосфера праздника</p>
+        <h2 class="reveal font-display font-bold tracking-tight text-[clamp(2rem,5.5vw,3.8rem)] leading-[1.06]">Так это выглядит <span class="squiggle">вживую</span></h2>
       </div>
     </div>
-  </section>
 
-  <!-- ============ LIVE PHOTOS (below expanded video, minimal gap) ============ -->
-  <section class="live-photos-row">
-    <div class="container-wow">
-      <div class="grid grid-cols-3 gap-4">
-        <figure class="card overflow-hidden p-2.5 shadow-[var(--shadow)]">
-          <img src="/live/1.jpg" alt="Праздник студии WOW" class="w-full aspect-[3/4] object-cover rounded-[20px]" />
-        </figure>
-        <figure class="card overflow-hidden p-2.5 shadow-[var(--shadow)]">
-          <img src="/live/2.jpg" alt="Праздник студии WOW" class="w-full aspect-[3/4] object-cover rounded-[20px]" />
-        </figure>
-        <figure class="card overflow-hidden p-2.5 shadow-[var(--shadow)]">
-          <img src="/live/3.jpg" alt="Праздник студии WOW" class="w-full aspect-[3/4] object-cover rounded-[20px]" />
-        </figure>
+    <div id="zoom" class="zoom-wrap">
+      <div class="zoom-sticky">
+        <!-- centre: our video (zooms in, stops at current widescreen size) -->
+        <div class="zoom-item zoom-video" data-scale="4">
+          <div class="zoom-box" style="width:min(21.5vw,300px);height:auto;aspect-ratio:16/9">
+            <video src="/video/show.mp4" autoplay muted loop playsinline preload="auto"></video>
+          </div>
+        </div>
+        <!-- 7 flanking photos -->
+        <div class="zoom-item" data-scale="5"><div class="zoom-box" style="top:-30vh;left:5vw;width:35vw;height:30vh"><img src="/live/1.jpg" alt="Праздник студии WOW" /></div></div>
+        <div class="zoom-item" data-scale="6"><div class="zoom-box" style="top:-10vh;left:-25vw;width:20vw;height:45vh"><img src="/live/2.jpg" alt="Праздник студии WOW" /></div></div>
+        <div class="zoom-item" data-scale="5"><div class="zoom-box" style="top:0;left:27.5vw;width:25vw;height:25vh"><img src="/live/3.jpg" alt="Праздник студии WOW" /></div></div>
+        <div class="zoom-item" data-scale="6"><div class="zoom-box" style="top:27.5vh;left:5vw;width:20vw;height:25vh"><img src="/live/4.jpg" alt="Праздник студии WOW" /></div></div>
+        <div class="zoom-item" data-scale="8"><div class="zoom-box" style="top:27.5vh;left:-22.5vw;width:30vw;height:25vh"><img src="/live/5.jpg" alt="Праздник студии WOW" /></div></div>
+        <div class="zoom-item" data-scale="9"><div class="zoom-box" style="top:22.5vh;left:25vw;width:15vw;height:15vh"><img src="/live/6.jpg" alt="Праздник студии WOW" /></div></div>
+        <div class="zoom-item" data-scale="7"><div class="zoom-box" style="top:-26vh;left:-26vw;width:22vw;height:22vh"><img src="/live/7.jpg" alt="Праздник студии WOW" /></div></div>
       </div>
     </div>
   </section>
