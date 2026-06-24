@@ -514,20 +514,30 @@ html.js .gal-item { clip-path: inset(0 0 100% 0); }
     order: 1;
     flex-shrink: 0;
     gap: 2.5vw;
+    width: 100%;
+    flex-wrap: nowrap;
   }
-  /* бейджи в одну строку vw размеры */
+  /* бейджи одинакового размера */
   #top .hero-anim:first-of-type span {
-    padding: 2vw 3vw;
-    font-size: clamp(11px, 2.2vw, 13px);
+    flex: 1;
+    padding: 0;
+    height: clamp(44px, 9vw, 56px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(1rem, 3.5vw, 1.15rem);
   }
   /* заголовок в центр */
   .hero-title {
     order: 2;
     font-size: clamp(2rem, 7vw, 4rem);
     margin-bottom: 0;
+    margin-top: 4vw;
     flex-grow: 1;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    opacity: 1 !important;
   }
   /* скрыть вторую кнопку */
   .btn-ghost { display: none; }
