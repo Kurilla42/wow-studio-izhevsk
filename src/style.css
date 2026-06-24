@@ -102,9 +102,7 @@ body {
 
 /* Hero text */
 .hero-title { color: var(--ink); }
-.hero-outline {
-  text-shadow: 0 2px 12px rgba(0,0,0,0.55), 0 0px 40px rgba(0,0,0,0.3);
-}
+.hero-outline { /* no text-shadow */ }
 
 /* Underline squiggle accent inherits pink */
 .squiggle { color: var(--pink); }
