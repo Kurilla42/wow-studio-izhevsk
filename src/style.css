@@ -476,3 +476,31 @@ html.js .gal-item { clip-path: inset(0 0 100% 0); }
 @media (hover: none), (pointer: coarse) {
   .magnetic-on { transform: none !important; }
 }
+
+/* Mobile-only adjustments */
+@media (max-width: 768px) {
+  .hero-bg { background-image: url('/img/hero_mobile_image.jpg') !important; }
+}
+
+/* Custom cursor ring (desktop / mouse only) */
+.cursor-ring {
+  position: fixed;
+  top: 0; left: 0;
+  width: 34px; height: 34px;
+  margin: -17px 0 0 -17px;
+  border: 1.5px solid var(--pink);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 95;
+  opacity: 0;
+  mix-blend-mode: multiply;
+  transition: opacity 0.3s ease, background-color 0.25s ease, border-color 0.25s ease;
+  will-change: transform;
+}
+.cursor-ring.is-active { opacity: 1; }
+.cursor-ring.is-hover { background: color-mix(in srgb, var(--pink) 16%, transparent); }
+@media (hover: none), (pointer: coarse) { .cursor-ring { display: none !important; } }
+
+/* Drifting ambient shapes (fixed, behind content) */
+.floaters { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+.floater { position: absolute; border-radius: 50%; filter: blur(60px); opacity: 0.45; will-change: transform; }

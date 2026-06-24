@@ -39,7 +39,7 @@
 
   <!-- ============ 1 + 8. HERO (full screen, content hard-left) ============ -->
   <section id="top" class="relative h-[100svh] min-h-[100svh] flex items-center overflow-hidden">
-    <div class="hero-bg absolute inset-0 -z-10 bg-center bg-cover" style="background-image:url('/img/hero3.jpg')"></div>
+    <div class="hero-bg absolute inset-0 -z-10 bg-center bg-cover" style="background-image:url('/img/hero3.jpg')" data-mobile="url('/img/hero_mobile_image.jpg')"></div>
     <div class="absolute inset-0 -z-10 bg-gradient-to-t from-bg/45 via-transparent to-transparent"></div>
 
     <div class="w-full pl-5 pr-5 md:pl-12 md:pr-8">
@@ -168,6 +168,7 @@
         <figure class="gal-item group relative aspect-square overflow-hidden"><img src="/heroes/ladybug.jpg" alt="Божья коровка" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" /></figure>
         <figure class="gal-item group relative aspect-square overflow-hidden"><img src="/heroes/social.jpg" alt="Вечеринка с блогером" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" /></figure>
         <figure class="gal-item group relative aspect-square overflow-hidden"><img src="/heroes/silver-show.jpg" alt="Серебряное шоу" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" /></figure>
+        <figure class="gal-item group relative aspect-square overflow-hidden md:hidden"><img src="/heroes/huggy.jpg" alt="Хагги-вагги" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" /></figure>
       </div>
       <p class="reveal text-center text-sm text-muted mt-5">Это лишь часть программ — полный список присылаем в ВКонтакте или WhatsApp.</p>
     </div>
@@ -301,7 +302,7 @@
         <!-- centre: our video (zooms in, stops at current widescreen size) -->
         <div class="zoom-item zoom-video" data-scale="4">
           <div class="zoom-box" style="width:400px;height:auto;aspect-ratio:16/9">
-            <video src="/video/show.mp4" autoplay muted loop playsinline preload="auto"></video>
+            <video autoplay muted loop playsinline preload="auto"><source src="/video/show.mp4" media="(min-width: 769px)" /><source src="/video/mobile.mp4" /></video>
           </div>
         </div>
         <!-- 6 flanking photos (1↔2 swapped; 7→pos3; pos7 removed) -->
