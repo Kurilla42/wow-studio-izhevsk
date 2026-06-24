@@ -273,10 +273,27 @@ html.js .reveal.is-in { opacity: 1; transform: none; transition: opacity 0.7s ea
 .step-meta { margin-top: 12px; }
 
 @media (max-width: 768px) {
-  .steps-flow { gap: 44px; }
-  .step { position: static; width: 100%; align-self: auto; margin-top: 0; }
-  .step-head { position: static; margin: 18px 0 0 !important; border: none; padding-top: 0; }
-  .step:nth-child(even) .step-head { order: 0; margin: 18px 0 0 !important; border: 2px solid var(--pink); padding: 16px; border-radius: 12px; }
+  /* display:contents «растворяет» article — дочерние img и step-head
+     становятся прямыми ячейками грида .steps-flow, что позволяет
+     расставить их в нужном порядке независимо от HTML-структуры. */
+  .steps-flow { display: grid; grid-template-columns: 1fr; }
+  .step { display: contents; }
+  .step-img { width: 100%; }
+  .step-head { position: static; margin: 0 !important; padding: 16px 0 28px; }
+
+  /* HTML: article1→img01+text02, article2→img02+text01,
+           article3→img03+text04, article4→img04+text03
+     Мобильный порядок (текст всегда над своей картинкой):
+       row1=text01(a2), row2=img01(a1), row3=text02(a1), row4=img02(a2)
+       row5=text03(a4), row6=img03(a3), row7=text04(a3), row8=img04(a4) */
+  .step:nth-child(1) .step-img  { grid-row: 2; }
+  .step:nth-child(1) .step-head { grid-row: 3; }
+  .step:nth-child(2) .step-head { grid-row: 1; }
+  .step:nth-child(2) .step-img  { grid-row: 4; }
+  .step:nth-child(3) .step-img  { grid-row: 6; }
+  .step:nth-child(3) .step-head { grid-row: 7; }
+  .step:nth-child(4) .step-head { grid-row: 5; }
+  .step:nth-child(4) .step-img  { grid-row: 8; }
 }
 
 /* ---- Reviews (single big testimonial slider, no portrait) ---- */
@@ -479,6 +496,8 @@ html.js .gal-item { clip-path: inset(0 0 100% 0); }
 /* Mobile-only adjustments */
 @media (max-width: 768px) {
   .hero-bg { background-image: url('/img/hero_mobile_image.jpg') !important; }
+  /* цена всегда на новой строке */
+  .price-tag { flex-basis: 100%; }
 }
 
 /* Custom cursor ring (desktop / mouse only) */
