@@ -500,6 +500,52 @@ html.js .gal-item { clip-path: inset(0 0 100% 0); }
   .price-tag { flex-basis: 100%; }
   /* скрыть текст описания в герое на мобилке */
   #top p { display: none; }
+
+  /* мобильная раскладка героя */
+  #top > div > div {
+    display: flex;
+    flex-direction: column;
+    min-height: 100svh;
+    justify-content: space-between;
+    padding: 6vw 0;
+  }
+  /* бейджи в верхней части */
+  #top .hero-anim:first-of-type {
+    order: 1;
+    flex-shrink: 0;
+    gap: 2.5vw;
+  }
+  /* бейджи в одну строку vw размеры */
+  #top .hero-anim:first-of-type span {
+    padding: 2vw 3vw;
+    font-size: clamp(11px, 2.2vw, 13px);
+  }
+  /* заголовок в центр */
+  .hero-title {
+    order: 2;
+    font-size: clamp(2rem, 7vw, 4rem);
+    margin-bottom: 0;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+  }
+  /* скрыть вторую кнопку */
+  .btn-ghost { display: none; }
+  /* скрыть checkmarks */
+  #top > div > div > .hero-anim:last-of-type { display: none; }
+  /* кнопка в нижней части */
+  #top .flex.flex-wrap.gap-3 {
+    order: 3;
+    flex-shrink: 0;
+    flex-direction: column;
+  }
+  #top .btn-pink {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    padding: 3vw 0 !important;
+    font-size: clamp(1rem, 3.5vw, 1.15rem);
+  }
 }
 
 /* Custom cursor ring (desktop / mouse only) */
