@@ -501,23 +501,20 @@ html.js .gal-item { clip-path: inset(0 0 100% 0); }
   /* скрыть текст описания в герое на мобилке */
   #top p { display: none; }
 
-  /* мобильная раскладка героя */
-  #top > div > div {
-    display: flex;
-    flex-direction: column;
-    min-height: 100svh;
-    justify-content: space-between;
-    padding: 6vw 0;
-  }
-  /* бейджи в верхней части */
+  /* мобильная раскладка героя: бейджи сверху, кнопка снизу — absolute;
+     заголовок остаётся в потоке, центрируется section flex items-center */
+  #top > div { position: relative; height: 100%; }
+
+  /* бейджи абсолютно вверху */
   #top .hero-anim:first-of-type {
-    order: 1;
-    flex-shrink: 0;
-    gap: 2.5vw;
-    width: 100%;
+    position: absolute;
+    top: 8vw;
+    left: 0; right: 0;
+    display: flex;
     flex-wrap: nowrap;
+    gap: 2.5vw;
+    margin: 0;
   }
-  /* бейджи одинакового размера — только прямые дочерние span */
   #top .hero-anim:first-of-type > span {
     flex: 1;
     padding: 0;
@@ -527,35 +524,37 @@ html.js .gal-item { clip-path: inset(0 0 100% 0); }
     justify-content: center;
     font-size: clamp(1rem, 3.5vw, 1.15rem);
   }
-  /* заголовок */
+
+  /* заголовок: виден, размер под мобилку, отступы под абсолютные элементы */
   .hero-title {
-    order: 2;
-    font-size: clamp(2rem, 7vw, 4rem);
-    margin-bottom: 0;
-    margin-top: 4vw;
-    flex-grow: 1;
-    display: block;
+    font-size: clamp(2rem, 8vw, 3.5rem);
+    margin-top: 22vw;
+    margin-bottom: 22vw;
   }
-  /* GSAP ставит opacity:0 на .hero-outline — перебиваем на мобилке */
+  /* GSAP ставит yPercent:100 + opacity:0 инлайн — перебиваем !important */
   .hero-title .hero-outline {
     opacity: 1 !important;
     transform: none !important;
+    display: block;
   }
-  /* скрыть вторую кнопку */
+
+  /* скрыть описание, вторую кнопку, checkmarks */
   .btn-ghost { display: none; }
-  /* скрыть checkmarks */
   #top > div > div > .hero-anim:last-of-type { display: none; }
-  /* кнопка в нижней части */
+
+  /* кнопка абсолютно внизу */
   #top .flex.flex-wrap.gap-3 {
-    order: 3;
-    flex-shrink: 0;
+    position: absolute;
+    bottom: 8vw;
+    left: 0; right: 0;
     flex-direction: column;
+    gap: 0;
   }
   #top .btn-pink {
     width: 100%;
     text-align: center;
     justify-content: center;
-    padding: 3vw 0 !important;
+    padding: 3.5vw 0 !important;
     font-size: clamp(1rem, 3.5vw, 1.15rem);
   }
 }
