@@ -72,6 +72,20 @@ if (expandWrap && !prefersReduced) {
     .to([line1, line2], { opacity: 0, ease: 'none', duration: 0.85 }, 0)                    // and fade out, fully gone near the end
 }
 
+/* ============ Video block rides up over the pricing block ============ */
+/* #live overlaps pricing via a negative margin + higher z-index (see CSS).
+   A gentle parallax on the pricing content adds motion so the video panel
+   visibly "rides over" the prices as you scroll. (No transform on #live itself
+   — that would break the sticky video inside it.) */
+const liveEl = document.getElementById('live')
+if (liveEl && !prefersReduced) {
+  gsap.to('#pricing .container-wow', {
+    yPercent: -14,
+    ease: 'none',
+    scrollTrigger: { trigger: liveEl, start: 'top bottom', end: 'top top', scrub: true },
+  })
+}
+
 /* ============ Reviews slider (single big testimonial) ============ */
 const stage = document.getElementById('reviews-stage')
 if (stage) {
@@ -122,10 +136,13 @@ if (canHover) {
       const ny = ((e.clientY - rect.top) / rect.height) * 2 - 1   // -1 .. 1
       // tilt toward the cursor — the point under it is pressed "into" the screen
       el.style.transform = `perspective(800px) rotateX(${(-ny * MAX).toFixed(2)}deg) rotateY(${(nx * MAX).toFixed(2)}deg) scale(1.02)`
+      // lift shadow for depth while tilting (offset away from the cursor)
+      el.style.boxShadow = `${(-nx * 16).toFixed(0)}px ${(26 - ny * 10).toFixed(0)}px 52px -14px rgba(40, 25, 10, 0.45)`
     })
     el.addEventListener('mouseleave', () => {
       rect = null
       el.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) scale(1)'
+      el.style.boxShadow = '' // revert to the base CSS shadow
     })
   })
 }
