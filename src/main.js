@@ -1,18 +1,50 @@
 import './style.css'
+import 'lenis/dist/lenis.css'
+import Lenis from 'lenis'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { SplitText } from 'gsap/SplitText'
+import { Draggable } from 'gsap/Draggable'
+import { InertiaPlugin } from 'gsap/InertiaPlugin'
 
-gsap.registerPlugin(ScrollTrigger)
+gsap.registerPlugin(ScrollTrigger, SplitText, Draggable, InertiaPlugin)
 
 const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches
+
+/* ============ Lenis: smooth, inertial scroll ============ */
+/* Eases native scroll (momentum / "доезд" after you stop). Native scroll is
+   preserved, so window.scrollY, position:sticky and ScrollTrigger keep working. */
+let lenis = null
+if (!prefersReduced) {
+  lenis = new Lenis({ duration: 1.15, smoothWheel: true, touchMultiplier: 1.5 })
+  lenis.on('scroll', ScrollTrigger.update)
+  gsap.ticker.add((t) => lenis.raf(t * 1000))
+  gsap.ticker.lagSmoothing(0)
+}
+
+/* Anchor links scroll smoothly through Lenis */
+document.querySelectorAll('a[href^="#"]').forEach((a) => {
+  const href = a.getAttribute('href')
+  if (!href || href.length < 2) return
+  a.addEventListener('click', (e) => {
+    const target = document.querySelector(href)
+    if (target && lenis) { e.preventDefault(); lenis.scrollTo(target, { offset: -8 }) }
+  })
+})
+
+/* ============ Scroll progress bar ============ */
+const bar = document.getElementById('scroll-progress')
+if (bar) {
+  gsap.to(bar, { scaleX: 1, ease: 'none', scrollTrigger: { start: 0, end: 'max', scrub: 0.3 } })
+}
 
 /* ============ Header: hidden over hero, revealed after it ============ */
 const header = document.querySelector('.site-header')
 const hero = document.getElementById('top')
 if (header && hero) {
   const onScroll = () => {
-    const trigger = hero.offsetHeight - 70
-    header.classList.toggle('is-visible', window.scrollY > trigger)
+    header.classList.toggle('is-visible', window.scrollY > hero.offsetHeight - 70)
   }
   window.addEventListener('scroll', onScroll, { passive: true })
   window.addEventListener('resize', onScroll)
@@ -21,77 +53,170 @@ if (header && hero) {
 
 /* ============ Hero intro ============ */
 if (!prefersReduced) {
-  gsap.set('.hero-anim', { y: 26, opacity: 0 })
-  gsap.to('.hero-anim', { y: 0, opacity: 1, duration: 0.9, ease: 'power3.out', stagger: 0.12, delay: 0.15 })
-  // Failsafe: never leave the hero hidden (e.g. throttled rAF in a background tab)
+  // everything except the headline: simple fade-up
+  gsap.set('.hero-anim:not(.hero-title)', { y: 26, opacity: 0 })
+  gsap.to('.hero-anim:not(.hero-title)', { y: 0, opacity: 1, duration: 0.9, ease: 'power3.out', stagger: 0.1, delay: 0.35 })
+  // headline: two lines rise + fade (no clip so the squiggle stays intact)
+  gsap.set('.hero-title .hero-outline', { yPercent: 100, opacity: 0 })
+  gsap.to('.hero-title .hero-outline', { yPercent: 0, opacity: 1, duration: 1, ease: 'power4.out', stagger: 0.12, delay: 0.2 })
+  // Failsafe: never leave hero content hidden (e.g. throttled rAF in a background tab)
   setTimeout(() => {
-    document.querySelectorAll('.hero-anim').forEach((e) => {
+    document.querySelectorAll('.hero-anim:not(.hero-title)').forEach((e) => {
       if (getComputedStyle(e).opacity === '0') gsap.set(e, { opacity: 1, y: 0 })
+    })
+    document.querySelectorAll('.hero-title .hero-outline').forEach((e) => {
+      if (getComputedStyle(e).opacity === '0') gsap.set(e, { opacity: 1, yPercent: 0 })
     })
   }, 1800)
 } else {
   gsap.set('.hero-anim', { opacity: 1 })
 }
 
-/* ============ Reveal on scroll ============ */
+/* ============ Reveal on scroll (paragraphs, eyebrows, etc.) ============ */
 document.querySelectorAll('.reveal').forEach((el) => {
   ScrollTrigger.create({ trigger: el, start: 'top 88%', once: true, onEnter: () => el.classList.add('is-in') })
 })
 if (prefersReduced) document.querySelectorAll('.reveal').forEach((el) => el.classList.add('is-in'))
 
+/* ============ SplitText: section headings rise word-by-word ============ */
+function splitHeadings() {
+  if (prefersReduced) return
+  document.querySelectorAll('h2.reveal').forEach((h) => {
+    h.classList.add('is-in') // let the reveal CSS show the parent; SplitText drives motion
+    const split = new SplitText(h, { type: 'lines,words', linesClass: 'split-line' })
+    gsap.set(split.words, { yPercent: 115 })
+    ScrollTrigger.create({
+      trigger: h, start: 'top 85%', once: true,
+      onEnter: () => gsap.to(split.words, { yPercent: 0, duration: 0.9, ease: 'power4.out', stagger: 0.05 }),
+    })
+  })
+}
+
+/* ============ Magnetic primary buttons (desktop) ============ */
+if (canHover) {
+  document.querySelectorAll('a.btn-pink').forEach((btn) => {
+    btn.classList.add('magnetic-on')
+    const s = 0.4
+    btn.addEventListener('mousemove', (e) => {
+      const r = btn.getBoundingClientRect()
+      gsap.to(btn, { x: (e.clientX - (r.left + r.width / 2)) * s, y: (e.clientY - (r.top + r.height / 2)) * s, duration: 0.4, ease: 'power3.out' })
+    })
+    btn.addEventListener('mouseleave', () => gsap.to(btn, { x: 0, y: 0, duration: 0.7, ease: 'elastic.out(1, 0.4)' }))
+  })
+}
+
+/* ============ Hero background parallax ============ */
+const heroBg = document.querySelector('.hero-bg')
+if (heroBg && !prefersReduced) {
+  gsap.set(heroBg, { scale: 1.18 }) // oversize so edges never show while it moves
+  gsap.fromTo(heroBg, { yPercent: -6 }, {
+    yPercent: 10, ease: 'none',
+    scrollTrigger: { trigger: '#top', start: 'top top', end: 'bottom top', scrub: true },
+  })
+}
+
+/* ============ Gallery clip-reveal ============ */
+const figs = document.querySelectorAll('.gal-item')
+if (figs.length) {
+  if (prefersReduced) gsap.set(figs, { clipPath: 'inset(0 0 0% 0)' })
+  else ScrollTrigger.batch(figs, {
+    start: 'top 85%',
+    onEnter: (b) => gsap.to(b, { clipPath: 'inset(0 0 0% 0)', duration: 1, ease: 'power3.out', stagger: 0.14 }),
+  })
+}
+
+/* ============ Running ticker (velocity-reactive) ============ */
+const tickerTrack = document.getElementById('ticker-track')
+if (tickerTrack && !prefersReduced) {
+  const loop = gsap.to(tickerTrack, { xPercent: -50, duration: 24, ease: 'none', repeat: -1 })
+  let settle
+  ScrollTrigger.create({
+    onUpdate: (self) => {
+      const v = self.getVelocity()
+      if (!v) return
+      const dir = v < 0 ? -1 : 1
+      gsap.to(loop, { timeScale: gsap.utils.clamp(0.3, 6, Math.abs(v) / 250 + 1) * dir, duration: 0.25, overwrite: true })
+      clearTimeout(settle)
+      settle = setTimeout(() => gsap.to(loop, { timeScale: 1, duration: 0.8, overwrite: true }), 130)
+    },
+  })
+}
+
 /* ============ Zoom parallax: video centre + 7 photos scale around it ============ */
-/* Each .zoom-item scales from 1 to its data-scale across the 300vh scene, tied
-   to scroll. The centre video stops at ~current widescreen size; the photos
-   scale harder and slide off-screen — so you "zoom into" the video. */
 const zoom = document.getElementById('zoom')
 const zoomDesktop = window.matchMedia('(min-width: 769px)').matches
 if (zoom && zoomDesktop) {
   const items = [...zoom.querySelectorAll('.zoom-item')]
   if (prefersReduced) {
-    // static fallback: video at final size, flying photos hidden
     items.forEach((item) => {
       if (item.classList.contains('zoom-video')) gsap.set(item, { scale: parseFloat(item.dataset.scale) || 4 })
       else gsap.set(item, { autoAlpha: 0 })
     })
   } else {
     items.forEach((item) => {
-      gsap.fromTo(item,
-        { scale: 1 },
-        {
-          scale: parseFloat(item.dataset.scale) || 4,
-          ease: 'none',
-          scrollTrigger: { trigger: zoom, start: 'top top', end: 'bottom bottom', scrub: true, invalidateOnRefresh: true },
-        })
+      gsap.fromTo(item, { scale: 1 }, {
+        scale: parseFloat(item.dataset.scale) || 4, ease: 'none',
+        scrollTrigger: { trigger: zoom, start: 'top top', end: 'bottom bottom', scrub: true, invalidateOnRefresh: true },
+      })
     })
   }
 }
 
-/* ============ Reviews slider (single big testimonial) ============ */
-const stage = document.getElementById('reviews-stage')
-if (stage) {
-  const slides = [...stage.querySelectorAll('.rev-slide')]
+/* ============ Reviews: draggable swipe carousel with inertia ============ */
+const track = document.getElementById('rev-track')
+if (track) {
+  const stage = document.getElementById('reviews-stage')
   const counter = document.getElementById('rev-counter')
-  let idx = 0
+  const slides = [...track.children]
   const total = slides.length
   const pad = (n) => String(n).padStart(2, '0')
-  const show = (i) => {
-    idx = (i + total) % total
-    slides.forEach((s, k) => s.classList.toggle('is-active', k === idx))
-    if (counter) counter.textContent = `${pad(idx + 1)} / ${pad(total)}`
+  const slideW = () => slides[0].offsetWidth
+  const clampIdx = (i) => Math.max(0, Math.min(total - 1, i))
+  let index = 0
+  const setCounter = () => { if (counter) counter.textContent = `${pad(index + 1)} / ${pad(total)}` }
+  setCounter()
+
+  if (!prefersReduced) {
+    let drag
+    const syncIndex = () => {
+      const i = clampIdx(Math.round(-gsap.getProperty(track, 'x') / slideW()))
+      if (i !== index) { index = i; setCounter() }
+    }
+    const goTo = (i) => {
+      index = clampIdx(i)
+      gsap.to(track, { x: -index * slideW(), duration: 0.6, ease: 'power3.out', onUpdate: () => drag && drag.update() })
+      setCounter()
+    }
+    drag = Draggable.create(track, {
+      type: 'x',
+      inertia: true,
+      bounds: stage,
+      edgeResistance: 0.9,
+      dragResistance: 0.05,
+      snap: { x: (v) => Math.round(v / slideW()) * slideW() },
+      onDrag: syncIndex,
+      onThrowUpdate: syncIndex,
+      onThrowComplete: syncIndex,
+      onDragEnd: syncIndex,
+    })[0]
+
+    // gentle autoplay, paused while the visitor interacts
+    let timer
+    const play = () => { timer = setInterval(() => goTo(index >= total - 1 ? 0 : index + 1), 6500) }
+    const stop = () => clearInterval(timer)
+    play()
+    stage.addEventListener('pointerenter', stop)
+    stage.addEventListener('pointerdown', stop)
+    stage.addEventListener('pointerleave', () => { stop(); play() })
+
+    window.addEventListener('resize', () => { gsap.set(track, { x: -index * slideW() }); drag && drag.applyBounds() })
   }
-  document.querySelectorAll('[data-rev]').forEach((btn) => {
-    btn.addEventListener('click', () => show(idx + (btn.dataset.rev === 'next' ? 1 : -1)))
-  })
-  // gentle autoplay, paused on hover
-  let timer = setInterval(() => show(idx + 1), 7000)
-  stage.addEventListener('pointerenter', () => clearInterval(timer))
-  stage.addEventListener('pointerleave', () => { timer = setInterval(() => show(idx + 1), 7000) })
 }
 
 /* ============ Active nav link ============ */
 const navLinks = [...document.querySelectorAll('.site-header nav a[href^="#"]')]
-const sections = navLinks.map((a) => document.querySelector(a.getAttribute('href'))).filter(Boolean)
-sections.forEach((sec, i) => {
+const navSections = navLinks.map((a) => document.querySelector(a.getAttribute('href'))).filter(Boolean)
+navSections.forEach((sec, i) => {
   ScrollTrigger.create({
     trigger: sec, start: 'top center', end: 'bottom center',
     onToggle: (self) => {
@@ -104,28 +229,29 @@ sections.forEach((sec, i) => {
 })
 
 /* ============ 3D tilt on image cards (mouse / desktop only) ============ */
-const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches
 if (canHover) {
-  const MAX = 7 // max tilt angle in degrees
+  const MAX = 7
   document.querySelectorAll('.tilt').forEach((el) => {
     let rect = null
     el.addEventListener('mouseenter', () => { rect = el.getBoundingClientRect() })
     el.addEventListener('mousemove', (e) => {
       if (!rect) rect = el.getBoundingClientRect()
-      const nx = ((e.clientX - rect.left) / rect.width) * 2 - 1   // -1 .. 1
-      const ny = ((e.clientY - rect.top) / rect.height) * 2 - 1   // -1 .. 1
-      // tilt toward the cursor — the point under it is pressed "into" the screen
+      const nx = ((e.clientX - rect.left) / rect.width) * 2 - 1
+      const ny = ((e.clientY - rect.top) / rect.height) * 2 - 1
       el.style.transform = `perspective(800px) rotateX(${(-ny * MAX).toFixed(2)}deg) rotateY(${(nx * MAX).toFixed(2)}deg) scale(1.02)`
-      // lift shadow for depth while tilting (offset away from the cursor)
       el.style.boxShadow = `${(-nx * 16).toFixed(0)}px ${(26 - ny * 10).toFixed(0)}px 52px -14px rgba(40, 25, 10, 0.45)`
     })
     el.addEventListener('mouseleave', () => {
       rect = null
       el.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) scale(1)'
-      el.style.boxShadow = '' // revert to the base CSS shadow
+      el.style.boxShadow = ''
     })
   })
 }
 
-/* refresh after fonts load to keep scroll math correct */
-if (document.fonts?.ready) document.fonts.ready.then(() => ScrollTrigger.refresh())
+/* ============ Build splits + refresh after fonts load ============ */
+if (document.fonts?.ready) {
+  document.fonts.ready.then(() => { splitHeadings(); ScrollTrigger.refresh() })
+} else {
+  splitHeadings()
+}

@@ -14,6 +14,8 @@
 </head>
 <body>
 
+  <div class="scroll-progress" id="scroll-progress"></div>
+
   <!-- ============ NAV (hidden over hero, revealed after) ============ -->
   <header class="site-header fixed top-0 inset-x-0 z-50">
     <nav class="container-wow flex items-center justify-between py-3.5">
@@ -37,7 +39,7 @@
 
   <!-- ============ 1 + 8. HERO (full screen, content hard-left) ============ -->
   <section id="top" class="relative h-[100svh] min-h-[100svh] flex items-center overflow-hidden">
-    <div class="absolute inset-0 -z-10 bg-center bg-cover" style="background-image:url('/img/hero3.jpg')"></div>
+    <div class="hero-bg absolute inset-0 -z-10 bg-center bg-cover" style="background-image:url('/img/hero3.jpg')"></div>
     <div class="absolute inset-0 -z-10 bg-gradient-to-t from-bg/45 via-transparent to-transparent"></div>
 
     <div class="w-full pl-5 pr-5 md:pl-12 md:pr-8">
@@ -162,10 +164,10 @@
         <button class="px-5 py-2 rounded-full text-sm font-bold border border-line-strong hover:border-pink hover:text-pink transition-colors">Квесты</button>
       </div>
 
-      <div class="grid grid-cols-2 md:grid-cols-3 gap-[3px] rounded-[24px] overflow-hidden reveal">
-        <figure class="group relative aspect-square overflow-hidden"><img src="/heroes/ladybug.jpg" alt="Божья коровка" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" /></figure>
-        <figure class="group relative aspect-square overflow-hidden"><img src="/heroes/social.jpg" alt="Вечеринка с блогером" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" /></figure>
-        <figure class="group relative aspect-square overflow-hidden"><img src="/heroes/silver-show.jpg" alt="Серебряное шоу" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" /></figure>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-[3px] rounded-[24px] overflow-hidden">
+        <figure class="gal-item group relative aspect-square overflow-hidden"><img src="/heroes/ladybug.jpg" alt="Божья коровка" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" /></figure>
+        <figure class="gal-item group relative aspect-square overflow-hidden"><img src="/heroes/social.jpg" alt="Вечеринка с блогером" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" /></figure>
+        <figure class="gal-item group relative aspect-square overflow-hidden"><img src="/heroes/silver-show.jpg" alt="Серебряное шоу" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" /></figure>
       </div>
       <p class="reveal text-center text-sm text-muted mt-5">Это лишь часть программ — полный список присылаем в ВКонтакте или WhatsApp.</p>
     </div>
@@ -234,6 +236,32 @@
     </div>
   </section>
 
+  <!-- ============ TICKER (between steps and pricing) ============ -->
+  <section class="ticker" aria-label="Преимущества студии WOW">
+    <div class="ticker-track" id="ticker-track">
+      <div class="ticker-group">
+        <span class="ticker-item ticker-lead">→ Почему WOW</span>
+        <span class="ticker-item">8 лет опыта</span>
+        <span class="ticker-item">5000+ праздников</span>
+        <span class="ticker-item">Рейтинг 5.0</span>
+        <span class="ticker-item">Свои костюмы</span>
+        <span class="ticker-item">Авторские шоу и квесты</span>
+        <span class="ticker-item">Выезд по Ижевску</span>
+        <span class="ticker-item">Работаем по договору</span>
+      </div>
+      <div class="ticker-group" aria-hidden="true">
+        <span class="ticker-item ticker-lead">→ Почему WOW</span>
+        <span class="ticker-item">8 лет опыта</span>
+        <span class="ticker-item">5000+ праздников</span>
+        <span class="ticker-item">Рейтинг 5.0</span>
+        <span class="ticker-item">Свои костюмы</span>
+        <span class="ticker-item">Авторские шоу и квесты</span>
+        <span class="ticker-item">Выезд по Ижевску</span>
+        <span class="ticker-item">Работаем по договору</span>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ 6. PRICING ============ -->
   <section id="pricing" class="py-24 md:py-32">
     <div class="container-wow">
@@ -298,7 +326,8 @@
 
       <div class="reveal relative">
         <div class="reviews-stage" id="reviews-stage">
-          <article class="rev-slide is-active">
+          <div class="rev-track" id="rev-track">
+          <article class="rev-slide">
             <div class="rev-num">01</div>
             <div class="relative z-10 max-w-4xl">
               <div class="flex items-center gap-3 mb-5"><span class="badge-src bg-[#0077FF]">VK</span><span class="text-gold tracking-widest text-lg">★★★★★</span></div>
@@ -342,14 +371,12 @@
               <footer class="mt-6"><span class="font-bold text-lg">Дмитрий П.</span><span class="block eyebrow mt-1">папа именинника</span></footer>
             </div>
           </article>
+          </div>
         </div>
 
         <div class="flex items-center justify-between mt-10">
           <div class="eyebrow" id="rev-counter">01 / 05</div>
-          <div class="flex gap-3">
-            <button class="rev-arrow" data-rev="prev" aria-label="Предыдущий">‹</button>
-            <button class="rev-arrow" data-rev="next" aria-label="Следующий">›</button>
-          </div>
+          <div class="rev-hint eyebrow">← тащите →</div>
         </div>
       </div>
     </div>

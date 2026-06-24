@@ -396,3 +396,83 @@ html.js .reveal.is-in { opacity: 1; transform: none; transition: opacity 0.7s ea
     radial-gradient(120% 120% at 100% 100%, color-mix(in srgb, var(--gold) 80%, #fff) 0%, transparent 50%),
     linear-gradient(135deg, var(--pink) 0%, #c0166a 45%, #7d1f5a 100%);
 }
+
+/* ============================================================
+   PREMIUM LAYER (Lenis inertia, progress bar, ticker, splits…)
+   ============================================================ */
+
+/* Scroll progress bar — thin pink line, scaleX tied to scroll */
+.scroll-progress {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--pink), var(--pink-bright));
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  z-index: 100;
+  pointer-events: none;
+}
+
+/* Running ticker between steps and pricing (reference look) */
+.ticker {
+  border-top: 1px solid var(--line-strong);
+  border-bottom: 1px solid var(--line-strong);
+  padding: 18px 0;
+  overflow: hidden;
+  background: var(--bg);
+}
+.ticker-track { display: flex; width: max-content; will-change: transform; }
+.ticker-group { display: flex; align-items: center; flex: 0 0 auto; }
+.ticker-item {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: clamp(0.78rem, 1.1vw, 0.95rem);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+}
+.ticker-item::after {
+  content: "·";
+  color: var(--pink);
+  margin: 0 1.5rem;
+  font-size: 1.3em;
+}
+.ticker-lead { color: var(--pink); }
+
+/* SplitText line mask — words rise from a clipped line */
+.split-line { overflow: hidden; padding-bottom: 0.04em; }
+.split-line > * { will-change: transform; }
+
+/* Hero background parallax */
+.hero-bg { will-change: transform; }
+
+/* Gallery clip-reveal (only gated behind JS so no-JS shows images) */
+html.js .gal-item { clip-path: inset(0 0 100% 0); }
+
+/* Reviews → draggable swipe carousel with inertia ("доезжает") */
+#reviews-stage { overflow: hidden; }
+.rev-track { display: flex; cursor: grab; }
+.rev-track:active { cursor: grabbing; }
+#reviews-stage .rev-slide {
+  position: relative;
+  inset: auto;
+  flex: 0 0 100%;
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  padding-right: 2.5rem;
+}
+.rev-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--muted);
+  user-select: none;
+}
+@media (hover: none), (pointer: coarse) {
+  .magnetic-on { transform: none !important; }
+}
