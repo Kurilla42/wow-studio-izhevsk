@@ -192,12 +192,20 @@ if (track) {
       inertia: true,
       bounds: stage,
       edgeResistance: 0.9,
-      dragResistance: 0.15,
-      snap: { x: (v) => Math.round(v / slideW()) * slideW(), tolerance: slideW() * 0.3 },
+      dragResistance: 0.05,
+      snap: { x: (v) => Math.round(v / slideW()) * slideW() },
       onDrag: syncIndex,
       onThrowUpdate: syncIndex,
       onThrowComplete: syncIndex,
-      onDragEnd: syncIndex,
+      onDragEnd() {
+        // switch slide if dragged >20% of width OR fast flick (velocity > 400px/s)
+        const delta = this.x - (-index * slideW())
+        if (Math.abs(delta) > slideW() * 0.2 || Math.abs(this.getVelocity('x')) > 400) {
+          goTo(delta < 0 ? index + 1 : index - 1)
+        } else {
+          goTo(index)
+        }
+      },
     })[0]
 
     // gentle autoplay, paused while the visitor interacts
