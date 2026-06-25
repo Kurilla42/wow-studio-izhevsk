@@ -520,23 +520,38 @@ html.js .gal-item { clip-path: inset(0 0 100% 0); }
 /* размытие верхней части hero */
   #top {
     position: relative;
-    overflow: hidden; /* чтобы псевдоэлемент не выходил за границы */
+    overflow: hidden;
   }
 
+  /* верхний «сильный» слой размытия – только на верхних 15% */
   #top::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 25%;
-  pointer-events: none;
-  z-index: 1;
-  backdrop-filter: none; /* временно отключаем blur */
-  background: linear-gradient(
-    to bottom,
-    rgba(255, 0, 0, 0.7) 0%,
-    rgba(0, 255, 0, 0.7) 50%,
-    rgba(0, 0, 255, 0.0) 100%
-  );
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 15%;
+    pointer-events: none;
+    z-index: 1;
+    backdrop-filter: blur(18px);
+    background: rgba(236, 232, 222, 0.35); /* плотный haze */
+  }
+
+  /* второй, более слабый слой – до 25% высоты */
+  #top::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 25%;
+    pointer-events: none;
+    z-index: 1;
+    backdrop-filter: blur(18px);
+    /* здесь уже лёгкий градиент + слабая альфа */
+    background: linear-gradient(
+      to bottom,
+      rgba(236, 232, 222, 0.18) 0%,   /* рядом с верхом ещё ощутимо */
+      rgba(236, 232, 222, 0.10) 40%,  /* середина заметно слабее */
+      rgba(236, 232, 222, 0.00) 100%  /* низ чистый */
+    );
+  }
 }
 
 /* Custom cursor ring (desktop / mouse only) */
