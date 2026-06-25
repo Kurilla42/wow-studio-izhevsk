@@ -101,7 +101,8 @@ body {
 .btn-ghost:hover { transform: translateY(-2px); border-color: var(--pink); color: var(--pink); }
 
 /* Hero text */
-.hero-title { color: var(--ink); }
+.hero-title { color: var(--ink-soft); 
+text-shadow: 0 1px 10px rgba(255, 255, 255, 0.6);}
 .hero-outline { /* no text-shadow */ }
 
 /* Underline squiggle accent inherits pink */
@@ -534,7 +535,6 @@ html.js .gal-item { clip-path: inset(0 0 100% 0); }
     line-height: 1.1;
     margin: 0;
     z-index: 2;          /* выше ::before */
-    color: #ebe6dc !important;
   }
 
   /* подзаголовок прямо над кнопкой */
