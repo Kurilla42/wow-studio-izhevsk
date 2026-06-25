@@ -524,22 +524,19 @@ html.js .gal-item { clip-path: inset(0 0 100% 0); }
   }
 
   #top::before {
-    content: "";
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 25%;           /* размытие до 25% высоты героблока */
-    pointer-events: none;
-    z-index: 1;            /* между фоном и контентом */
-    backdrop-filter: blur(18px);
-    /* плавный градиент прозрачности: сверху сильнее, к низу исчезает */
-    background: linear-gradient(
-      to bottom,
-      rgba(236, 232, 222, 0.10) 0%,   /* 30% «силы» на самой верхней точке */
-      rgba(236, 232, 222, 0.08) 30%,
-      rgba(236, 232, 222, 0.04) 60%,
-      rgba(236, 232, 222, 0.00) 100%  /* 0% на нижней границе 25% высоты */
-    );
-  }
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 25%;
+  pointer-events: none;
+  z-index: 1;
+  backdrop-filter: none; /* временно отключаем blur */
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 0, 0, 0.7) 0%,
+    rgba(0, 255, 0, 0.7) 50%,
+    rgba(0, 0, 255, 0.0) 100%
+  );
 }
 
 /* Custom cursor ring (desktop / mouse only) */
