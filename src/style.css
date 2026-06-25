@@ -476,7 +476,7 @@ html.js .gal-item { clip-path: inset(0 0 100% 0); }
 /* Mobile-only adjustments */
 @media (max-width: 768px) {
   .hero-bg {
-    background-image: url('/img/hero_mobile_image.jpg') !important;
+    background-image: url('/img/hero_mobile_image2.jpg') !important;
   }
 
   /* цена всегда на новой строке */
@@ -518,7 +518,7 @@ html.js .gal-item { clip-path: inset(0 0 100% 0); }
     content: "";
     position: absolute;
     inset: 0;            /* top:0; right:0; bottom:0; left:0 */
-    background: rgba(26, 20, 15, 0.06); /* нужный цвет и сила затемнения */
+    background: rgba(26, 20, 15, 0.01); /* нужный цвет и сила затемнения */
     z-index: 1;          /* ниже заголовка/кнопки, выше фоновой картинки */
     pointer-events: none;
   }
