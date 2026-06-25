@@ -545,7 +545,6 @@ html.js .gal-item { clip-path: inset(0 0 100% 0); }
     z-index: 2;          /* кнопка тоже выше затемнения */
   }
 }
-}
 
 /* Custom cursor ring (desktop / mouse only) */
 .cursor-ring {
