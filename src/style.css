@@ -101,7 +101,7 @@ body {
 .btn-ghost:hover { transform: translateY(-2px); border-color: var(--pink); color: var(--pink); }
 
 /* Hero text */
-.hero-title { color: var(--ink-soft); 
+.hero-title { color: var(--ink); 
 text-shadow: 0 1px 10px rgba(255, 255, 255, 0.6);}
 .hero-outline { /* no text-shadow */ }
 
