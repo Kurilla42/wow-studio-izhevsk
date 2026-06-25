@@ -503,8 +503,9 @@ html.js .gal-item { clip-path: inset(0 0 100% 0); }
   .btn-ghost { display: none !important; }
   #top > div > div > div:last-of-type { display: none !important; }
 
-  /* бейджи — absolute вверху */
-  #top .hero-anim:first-of-type {
+  /* бейджи — absolute вверху. ВАЖНО: div.hero-anim — иначе :first-of-type
+     цепляет и h1 (он первый h1), ломая заголовок */
+  #top div.hero-anim:first-of-type {
     position: absolute;
     top: 8vw;
     left: 5vw; right: 5vw;
@@ -514,7 +515,7 @@ html.js .gal-item { clip-path: inset(0 0 100% 0); }
     margin: 0;
     z-index: 2;
   }
-  #top .hero-anim:first-of-type > span {
+  #top div.hero-anim:first-of-type > span {
     flex: 1;
     padding: 0;
     height: clamp(44px, 9vw, 56px);
