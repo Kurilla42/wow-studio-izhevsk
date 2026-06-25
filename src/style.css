@@ -517,6 +517,44 @@ html.js .gal-item { clip-path: inset(0 0 100% 0); }
     margin: 0;
     z-index: 2;
   }
+  /* весь hero должен быть относительно позиционирован */
+  #top {
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* цветное затемнение на весь hero на мобайле */
+  #top::before {
+    content: "";
+    position: absolute;
+    inset: 0;            /* top:0; right:0; bottom:0; left:0 */
+    background: rgba(26, 20, 15, 0.24); /* нужный цвет и сила затемнения */
+    z-index: 1;          /* ниже заголовка/кнопки, выше фоновой картинки */
+    pointer-events: none;
+  }
+
+  /* убедимся, что заголовок и кнопка поверх затемнения */
+  .hero-title {
+    position: absolute;
+    top: 10vw;
+    left: 5vw;
+    right: 5vw;
+    font-size: clamp(2rem, 9vw, 3.4rem);
+    line-height: 1.1;
+    margin: 0;
+    z-index: 2;          /* выше ::before */
+    color: #ece8de; /* новый цвет заголовка на мобильной версии */
+  }
+
+  #top .flex.flex-wrap.gap-3 {
+    position: absolute;
+    bottom: 8vw;
+    left: 5vw;
+    right: 5vw;
+    flex-direction: column;
+    z-index: 2;          /* кнопка тоже выше затемнения */
+  }
+}
 }
 
 /* Custom cursor ring (desktop / mouse only) */
