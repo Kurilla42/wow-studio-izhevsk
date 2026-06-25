@@ -518,7 +518,7 @@ html.js .gal-item { clip-path: inset(0 0 100% 0); }
     content: "";
     position: absolute;
     inset: 0;            /* top:0; right:0; bottom:0; left:0 */
-    background: rgba(26, 20, 15, 0.24); /* нужный цвет и сила затемнения */
+    background: rgba(26, 20, 15, 0.14); /* нужный цвет и сила затемнения */
     z-index: 1;          /* ниже заголовка/кнопки, выше фоновой картинки */
     pointer-events: none;
   }
@@ -526,7 +526,7 @@ html.js .gal-item { clip-path: inset(0 0 100% 0); }
   /* убедимся, что заголовок и кнопка поверх затемнения */
   .hero-title {
     position: absolute;
-    top: 10vw;
+    top: 12vw;
     left: 5vw;
     right: 5vw;
     font-size: clamp(2rem, 9vw, 3.4rem);
