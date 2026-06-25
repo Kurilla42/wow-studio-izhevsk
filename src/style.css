@@ -530,9 +530,10 @@ html.js .gal-item { clip-path: inset(0 0 100% 0); }
     font-size: clamp(2rem, 8vw, 3.5rem);
   }
 
-  /* скрыть описание, вторую кнопку, checkmarks */
+  /* скрыть вторую кнопку и checkmarks */
   .btn-ghost { display: none; }
-  #top > div > div > .hero-anim:last-of-type { display: none; }
+  /* checkmarks — последний div среди детей контейнера героя */
+  #top > div > div > div:last-of-type { display: none; }
 
   /* кнопка абсолютно внизу */
   #top .flex.flex-wrap.gap-3 {
