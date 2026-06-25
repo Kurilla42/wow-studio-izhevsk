@@ -327,8 +327,7 @@
 
       <div class="reveal relative">
         <div class="reviews-stage" id="reviews-stage">
-          <div class="rev-track" id="rev-track">
-          <article class="rev-slide">
+          <article class="rev-slide is-active">
             <div class="rev-num">01</div>
             <div class="relative z-10 max-w-4xl">
               <div class="flex items-center gap-3 mb-5"><span class="badge-src bg-[#0077FF]">VK</span><span class="text-gold tracking-widest text-lg">★★★★★</span></div>
@@ -372,12 +371,14 @@
               <footer class="mt-6"><span class="font-bold text-lg">Дмитрий П.</span><span class="block eyebrow mt-1">папа именинника</span></footer>
             </div>
           </article>
-          </div>
         </div>
 
         <div class="flex items-center justify-between mt-10">
           <div class="eyebrow" id="rev-counter">01 / 05</div>
-          <div class="rev-hint eyebrow">← тащите →</div>
+          <div class="flex gap-3">
+            <button class="rev-arrow" data-rev="prev" aria-label="Предыдущий">‹</button>
+            <button class="rev-arrow" data-rev="next" aria-label="Следующий">›</button>
+          </div>
         </div>
       </div>
     </div>

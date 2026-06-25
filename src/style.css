@@ -469,26 +469,6 @@ html.js .reveal.is-in { opacity: 1; transform: none; transition: opacity 0.7s ea
 /* Gallery clip-reveal (only gated behind JS so no-JS shows images) */
 html.js .gal-item { clip-path: inset(0 0 100% 0); }
 
-/* Reviews → draggable swipe carousel with inertia ("доезжает") */
-#reviews-stage { overflow: hidden; }
-.rev-track { display: flex; cursor: grab; }
-.rev-track:active { cursor: grabbing; }
-#reviews-stage .rev-slide {
-  position: relative;
-  inset: auto;
-  flex: 0 0 100%;
-  opacity: 1;
-  visibility: visible;
-  transform: none;
-  padding-right: 2.5rem;
-}
-.rev-hint {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: var(--muted);
-  user-select: none;
-}
 @media (hover: none), (pointer: coarse) {
   .magnetic-on { transform: none !important; }
 }
