@@ -534,6 +534,7 @@ html.js .gal-item { clip-path: inset(0 0 100% 0); }
     line-height: 1.1;
     margin: 0;
     z-index: 2;          /* выше ::before */
+    color: ebe6dc !important;
   }
 
   /* подзаголовок прямо над кнопкой */
@@ -541,7 +542,7 @@ html.js .gal-item { clip-path: inset(0 0 100% 0); }
     position: absolute;
     left: 9vw;
     right: 5vw;
-    bottom: 22vw;              /* высота над нижним краем — подгони по вкусу */
+    bottom: 26vw;              /* высота над нижним краем — подгони по вкусу */
     margin: 0;
     font-size: clamp(0.9rem, 6vw, 1.05rem);
     line-height: 1.4;
