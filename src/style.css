@@ -548,11 +548,11 @@ html.js .gal-item { clip-path: inset(0 0 100% 0); }
   /* подзаголовок прямо над кнопкой */
   #top p:first-of-type {
     position: absolute;
-    left: 5vw;
+    left: 9vw;
     right: 5vw;
     bottom: 22vw;              /* высота над нижним краем — подгони по вкусу */
     margin: 0;
-    font-size: 0.95rem;
+    font-size: 10vw;
     line-height: 1.4;
     z-index: 2;
   }
