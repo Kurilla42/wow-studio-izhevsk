@@ -533,7 +533,6 @@ html.js .gal-item { clip-path: inset(0 0 100% 0); }
     line-height: 1.1;
     margin: 0;
     z-index: 2;          /* выше ::before */
-    color: #ece8de !important; /* новый цвет заголовка на мобильной версии */
   }
 
   #top .flex.flex-wrap.gap-3 {
