@@ -529,7 +529,7 @@ html.js .gal-item { clip-path: inset(0 0 100% 0); }
     top: 16vw;
     left: 5vw;
     right: 5vw;
-    font-size: clamp(2rem, 9vw, 3.4rem);
+    font-size: clamp(2rem, 16vw, 3.4rem);
     line-height: 1.1;
     margin: 0;
     z-index: 2;          /* выше ::before */
