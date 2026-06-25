@@ -498,13 +498,12 @@ html.js .gal-item { clip-path: inset(0 0 100% 0); }
   .hero-bg { background-image: url('/img/hero_mobile_image.jpg') !important; }
   /* цена всегда на новой строке */
   .price-tag { flex-basis: 100%; }
-  /* скрыть текст описания в герое на мобилке */
-  #top p { display: none; }
+  /* скрыть всё лишнее в герое */
+  #top p { display: none !important; }
+  .btn-ghost { display: none !important; }
+  #top > div > div > div:last-of-type { display: none !important; }
 
-  /* мобильная раскладка героя — бейджи и кнопка absolute к #top (он уже relative),
-     hero-bg и gradient divs НЕ трогаем (не используем #top > div) */
-
-  /* бейджи абсолютно вверху */
+  /* бейджи — absolute вверху */
   #top .hero-anim:first-of-type {
     position: absolute;
     top: 8vw;
@@ -525,17 +524,7 @@ html.js .gal-item { clip-path: inset(0 0 100% 0); }
     font-size: clamp(1rem, 3.5vw, 1.15rem);
   }
 
-  /* заголовок — JS-анимация отключена на мобилке (см. main.js), показываем как есть */
-  .hero-title {
-    font-size: clamp(2rem, 8vw, 3.5rem);
-  }
-
-  /* скрыть вторую кнопку и checkmarks */
-  .btn-ghost { display: none; }
-  /* checkmarks — последний div среди детей контейнера героя */
-  #top > div > div > div:last-of-type { display: none; }
-
-  /* кнопка абсолютно внизу */
+  /* кнопка — absolute внизу */
   #top .flex.flex-wrap.gap-3 {
     position: absolute;
     bottom: 8vw;
@@ -548,6 +537,17 @@ html.js .gal-item { clip-path: inset(0 0 100% 0); }
     justify-content: center;
     padding: 3.5vw 0 !important;
     font-size: clamp(1rem, 3.5vw, 1.15rem);
+  }
+
+  /* заголовок — absolute, прямо над кнопкой */
+  .hero-title {
+    position: absolute;
+    bottom: calc(8vw + clamp(44px, 9vw, 56px) + 6vw);
+    left: 5vw; right: 5vw;
+    font-size: clamp(1.9rem, 8vw, 3.2rem);
+    line-height: 1.1;
+    margin: 0;
+    z-index: 2;
   }
 }
 
