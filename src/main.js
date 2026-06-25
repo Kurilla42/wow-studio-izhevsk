@@ -54,9 +54,11 @@ if (!prefersReduced) {
   // everything except the headline: simple fade-up
   gsap.set('.hero-anim:not(.hero-title)', { y: 26, opacity: 0 })
   gsap.to('.hero-anim:not(.hero-title)', { y: 0, opacity: 1, duration: 0.9, ease: 'power3.out', stagger: 0.1, delay: 0.35 })
-  // headline: two lines rise + fade (no clip so the squiggle stays intact)
-  gsap.set('.hero-title .hero-outline', { yPercent: 100, opacity: 0 })
-  gsap.to('.hero-title .hero-outline', { yPercent: 0, opacity: 1, duration: 1, ease: 'power4.out', stagger: 0.12, delay: 0.2 })
+  // headline: two lines rise + fade — only on desktop (mobile shows it static)
+  if (!window.matchMedia('(max-width: 768px)').matches) {
+    gsap.set('.hero-title .hero-outline', { yPercent: 100, opacity: 0 })
+    gsap.to('.hero-title .hero-outline', { yPercent: 0, opacity: 1, duration: 1, ease: 'power4.out', stagger: 0.12, delay: 0.2 })
+  }
   // Failsafe: never leave hero content hidden (e.g. throttled rAF in a background tab)
   setTimeout(() => {
     document.querySelectorAll('.hero-anim:not(.hero-title)').forEach((e) => {
